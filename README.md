@@ -3,7 +3,7 @@
 ### Team Members: 
 - Nick Munoz, A16117845
 - Raymond Urbina, 
-- 
+- Marcin Kierebinski, A14028165
 - 
 
 Click [Link](https://drive.google.com/drive/u/2/folders/0AOlMoffSwVZHUk9PVA) to access google drive
