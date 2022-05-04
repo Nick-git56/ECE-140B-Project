@@ -2,6 +2,7 @@
 persistent_db
 .DS_store
 thumbs.db
+*.env
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
