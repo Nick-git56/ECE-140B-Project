@@ -1,10 +1,10 @@
 from wsgiref.simple_server import make_server
 from pyramid.config import Configurator
-from pyramid.renderers import render_to_response
-from pyramid.response import FileResponse
-
 import mysql.connector as mysql
 import os
+
+from routes import routes
+
 
 db_user = os.environ['MYSQL_USER']
 db_pass = os.environ['MYSQL_PASSWORD']
@@ -12,44 +12,36 @@ db_name = os.environ['MYSQL_DATABASE']
 db_host = os.environ['MYSQL_HOST']
 
 
-def get_home(req):
-  # Connect to the database and retrieve the users
-  db = mysql.connect(host=db_host, database=db_name, user=db_user, passwd=db_pass)
-  cursor = db.cursor()
-  cursor.execute("select first_name, last_name, email, major from TeamMembers;")
-  records = cursor.fetchall()
-  db.close()
+def getController():
+  """
+  Creates controller that has Route Configurations
 
-  return render_to_response('index.html', {'users': records}, request=req)
-
-# def get_product(req):
-#   return FileResponse("pages/product.html")
-
-# def get_kvp(req):
-#   return FileResponse("pages/kvp.html")
-
-
-''' Route Configurations '''
-if __name__ == '__main__':
+  Returns:
+  Controller that will be used for controlling routes redirection for the server
+  :type: Configurator()
+  """
   config = Configurator()
 
-  config.include('pyramid_jinja2')
-  config.add_jinja2_renderer('.html')
-
   config.add_route('get_home', '/')
-  config.add_view(get_home, route_name='get_home')
+  config.add_view(routes.get_home, route_name='get_home')
 
-  # config.add_route('product', '/product')
-  # config.add_view(get_product, route_name='product')
-
-  # config.add_route('kvp', '/kvp')
-  # config.add_view(get_kvp, route_name='kvp')
-
-  # config.add_route('objectDetect', '/objectDetect/{obj_name}')
-  # config.add_view(runDetect, route_name='objectDetect', renderer='json')
+  config.add_route('get_temp', '/temp')
+  config.add_view(routes.get_temp, route_name='get_temp')
 
   config.add_static_view(name='/', path='./public', cache_max_age=3600)
 
   app = config.make_wsgi_app()
+  return app
+
+
+if __name__=="__main__":
+  # setup controller for server
+  app = getController()
+
+  # start server
   server = make_server('0.0.0.0', 6000, app)
-  server.serve_forever()
+
+  try: 
+    server.serve_forever()
+  except KeyboardInterrupt:
+    print("Shutting down server...")
