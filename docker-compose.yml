@@ -13,6 +13,17 @@ services:
       - ./web/src:/app
     container_name: agile-web
 
+    hardware-server:
+      build:
+        context: ./hardware
+      ports:
+        - 70:6000 # host : container
+      env_file:
+        ./credentials.env
+      volumes:
+        - ./web/src:/app
+      container_name: agile-hardware
+
   db-server:
     image: mysql:latest
     restart: always
