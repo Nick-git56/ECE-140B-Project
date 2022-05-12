@@ -1,4 +1,5 @@
 from pyramid.response import FileResponse
+import settings
 
 def get_home(req):
     """
@@ -8,6 +9,8 @@ def get_home(req):
     Returns a FileResponse object that is associated with this route
     :type: FileResponse()
     """
+    # this is how to acccess api instantiation
+    settings.api_interface.doSomething()
     return FileResponse("index.html")
 
 def get_temp(req):
@@ -19,3 +22,14 @@ def get_temp(req):
     :type: FileResponse()
     """
     return FileResponse("pages/temp.html")
+
+def create_event(req):
+    """
+    Creates a new Event
+
+    Returns:
+    Returns a FileResponse object that is associated with this route
+    :type: FileResponse()
+    """
+    
+    return FileResponse("index.html")

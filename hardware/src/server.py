@@ -1,3 +1,8 @@
+"""Hardware-server 
+
+Responsible for communicating with hardware components(bracelets) and 
+uploading this data to the database system
+"""
 from wsgiref.simple_server import make_server
 from pyramid.config import Configurator
 import mysql.connector as mysql
