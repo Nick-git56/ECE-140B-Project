@@ -33,3 +33,40 @@ def create_event(req):
     """
     
     return FileResponse("index.html")
+
+def create_account(req):
+    """
+    Creates a new account for customers
+    collects customer credentials and send the sent direct customer to the 
+    home/dashboard page
+
+    Returns:
+    Returns a FileResponse object that is associated with this route
+    :type: FileResponse()
+    """
+    
+    return FileResponse("home.html")
+
+def login_verify(req):
+    """
+    Verify customers credentials entered are correct  
+    and send customer to home/dashboard page
+
+    Returns:
+    Returns a FileResponse object that is associated with this route
+    :type: FileResponse()
+    """
+    
+    return FileResponse("home.html")
+
+def venue_login_page(req):
+
+    """
+    login page 
+
+    Returns:
+    Returns a FileResponse object that is associated with this route
+    :type: FileResponse()
+    """
+    
+    return FileResponse("home.html")

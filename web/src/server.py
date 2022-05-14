@@ -35,6 +35,17 @@ def getController():
   config.add_route('create_event', '/createEvent')
   config.add_view(routes.create_event, route_name='create_event')
 
+  # added these 3 routes to match what I wrote in the the js file
+  config.add_route('venue_login_page', '/venue_login')
+  config.add_view(routes.venue_login_page, route_name='venue_login_page')
+
+  config.add_route('login_verify', '/login_verify')
+  config.add_view(routes.login_verify, route_name='login_verify')
+
+  config.add_route('create_account', '/create_account')
+  config.add_view(routes.create_account, route_name='create_account')
+  # *************************************************************
+
   config.add_static_view(name='/', path='./public', cache_max_age=3600)
 
   app = config.make_wsgi_app()
