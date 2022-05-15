@@ -12,8 +12,8 @@ from dotenv import load_dotenv
 
 load_dotenv('credentials.env')
 
-complete_tablesList = ['Customers','Events','Companies','Suites','Services','Users','Employees','Transactions','Surveys','Products','RFIDLog','LocationLog']
-users_tableList = ['Users','Surveys','LocationLog',]
+complete_tablesList = ['Customers','Events','Companies','Suites','Services','Users','Employees','Transactions','Surveys','Products','RFIDLogs','LocationLogs']
+users_tableList = ['Users','Surveys','LocationLogs',]
 customers_tableList = complete_tablesList
 employees_tableList = ['Employees','Transactions','Products','Surveys','Users','Services']
 

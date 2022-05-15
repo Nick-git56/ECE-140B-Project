@@ -115,7 +115,7 @@ def create_tables(cursor):
 
     try:
         cursor.execute("""
-            CREATE TABLE RFIDLog (
+            CREATE TABLE RFIDLogs (
             id          integer AUTO_INCREMENT PRIMARY KEY,
             user_id     integer NOT NULL,
             created_at  TIMESTAMP
