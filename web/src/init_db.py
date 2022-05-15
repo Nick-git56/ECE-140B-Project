@@ -37,6 +37,7 @@ root_cursor = root_db.cursor()
 
 # create database
 root_cursor.execute(f"CREATE DATABASE IF NOT EXISTS {db_name};")
+root_cursor.execute(f"USE {db_name}")
 
 # # CAUTION!!! CAUTION!!! CAUTION!!! CAUTION!!! CAUTION!!! CAUTION!!! CAUTION!!!
 print(f"Do you want to overwrite ALL the contents within the database {db_name}?(y/n)")
