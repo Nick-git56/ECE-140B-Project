@@ -6,15 +6,16 @@ responsible for managing routes received from the client.
 from wsgiref.simple_server import make_server
 from pyramid.config import Configurator
 import mysql.connector as mysql
+from dotenv import load_dotenv
 import os
 
-from modules import routes,settings
+from modules import settings,routes
 
-
-db_user = os.environ['MYSQL_USER']
-db_pass = os.environ['MYSQL_PASSWORD']
-db_name = os.environ['MYSQL_DATABASE']
-db_host = os.environ['MYSQL_HOST']
+load_dotenv('credentials.env')
+# db_user = os.environ['MYSQL_ROOT']
+# db_pass = os.environ['MYSQL_ROOT_PASSWORD']
+# db_name = os.environ['MYSQL_DATABASE']
+# db_host = os.environ['MYSQL_HOST']
 
 
 def getController():

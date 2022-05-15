@@ -1,6 +1,6 @@
 """
 """
-from manager import EventManager,SuiteManager,ServiceManager,CustomerManager
+from modules.system.manager import EventManager,SuiteManager,ServiceManager,CustomerManager
 
 class Planner:
     """Abstract Class representing default Planner
@@ -18,7 +18,7 @@ class EventPlanner(Planner):
     """
     def __init__(self):
         planner_type = "Event Planner"
-        super().__init__(self,planner_type)
+        super().__init__(planner_type)
         self._eventManger = EventManager()
 
 
@@ -27,7 +27,7 @@ class SuitePlanner(Planner):
     """
     def __init__(self):
         planner_type = "Suite Planner"
-        super().__init__(self,planner_type)
+        super().__init__(planner_type)
         self._suiteManager = SuiteManager()
 
 
@@ -36,7 +36,7 @@ class ServicePlanner(Planner):
     """
     def __init__(self):
         planner_type = "Service Planner"
-        super().__init__(self,planner_type)
+        super().__init__(planner_type)
         self._serviceManager = ServiceManager()
 
 
@@ -45,5 +45,5 @@ class CustomerPlanner(Planner):
     """
     def __init__(self):
         planner_type = "Customer Planner"
-        super().__init__(self,planner_type)
+        super().__init__(planner_type)
         self._customerManager = CustomerManager()

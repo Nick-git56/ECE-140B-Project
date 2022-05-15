@@ -1,5 +1,5 @@
 from pyramid.response import FileResponse
-import settings
+import modules.settings
 
 def get_home(req):
     """
@@ -10,7 +10,7 @@ def get_home(req):
     :type: FileResponse()
     """
     # this is how to acccess api instantiation
-    # settings.api_interface.doSomething()
+    settings.api_interface.doSomething()
     return FileResponse("index.html")
 
 def get_create_account(req):

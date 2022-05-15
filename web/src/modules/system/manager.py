@@ -1,5 +1,14 @@
 """
 """
+# from modules.system.planner import SuitePlanner,ServicePlanner
+
+# forward declare SuitePlanner
+class SuitePlanner():
+    pass
+
+# forward declare ServicePlanner
+class ServicePlanner():
+    pass
 
 class Manager:
     """Abstract Class representing default Manager
@@ -17,7 +26,9 @@ class EventManager(Manager):
     """
     def __init__(self):
         manager_type = "Event Manager"
-        super().__init__(self,manager_type)
+        super().__init__(manager_type)
+        self._suite_planner = SuitePlanner()
+        self._service_planner = ServicePlanner()
 
 
 class SuiteManager(Manager):
@@ -25,7 +36,7 @@ class SuiteManager(Manager):
     """
     def __init__(self):
         manager_type = "Suite Manager"
-        super().__init__(self,manager_type)
+        super().__init__(manager_type)
 
 
 class ServiceManager(Manager):
@@ -33,7 +44,7 @@ class ServiceManager(Manager):
     """
     def __init__(self):
         manager_type = "Service Manger"
-        super().__init__(self,manager_type)
+        super().__init__(manager_type)
 
 
 class CustomerManager(Manager):
@@ -41,4 +52,4 @@ class CustomerManager(Manager):
     """
     def __init__(self):
         manager_type = "Customer Manager"
-        super().__init__(self,manager_type)
+        super().__init__(manager_type)

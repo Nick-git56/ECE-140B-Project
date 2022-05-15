@@ -1,6 +1,6 @@
 """
 """
-from controller import EventController,DataController
+from modules.system.controller import EventController,DataController
 
 
 class API:
@@ -13,6 +13,9 @@ class API:
         print("API object created")
         self._event_controller = EventController()
         self._data_controller = DataController()
+
+    def doSomething(self):
+        print("The API object")
 
     def create_event(self):
         """Create a new Event

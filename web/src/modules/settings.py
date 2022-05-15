@@ -1,10 +1,10 @@
 """
 """
-from system import api
+from modules.system.api import API
 
 
 def settings():
     """
     """
     global api_interface
-    api_interface = api.API()
+    api_interface = API()

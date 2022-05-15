@@ -1,7 +1,7 @@
 """
 """
-from planner import EventPlanner
-from uploader import UserDataUploader,CustomerDataUploader,EmployeeDataUploader
+from modules.system.planner import EventPlanner
+from modules.system.uploader import UserDataUploader,CustomerDataUploader,EmployeeDataUploader
 
 
 class Controller:
@@ -20,7 +20,7 @@ class EventController(Controller):
     """
     def __init__(self):
         controller_type = "Event Controller"
-        super().__init__(self,controller_type)
+        super().__init__(controller_type)
         self._event_planner = EventPlanner()
 
 
@@ -29,7 +29,7 @@ class DataController(Controller):
     """
     def __init__(self):
         controller_type = "Data Controller"
-        super().__init__(self,controller_type)
+        super().__init__(controller_type)
         self._user_uploader = UserDataUploader()
         self._customer_uploader = CustomerDataUploader()
         self._employee_uploader = EmployeeDataUploader()
