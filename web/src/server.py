@@ -29,11 +29,14 @@ def getController():
   config.add_route('get_home', '/')
   config.add_view(routes.get_home, route_name='get_home')
 
-  config.add_route('get_temp', '/temp')
-  config.add_view(routes.get_temp, route_name='get_temp')
+  config.add_route('get_create_account', '/createAccount')
+  config.add_view(routes.get_create_account, route_name='get_create_account')
 
-  config.add_route('create_event', '/createEvent')
-  config.add_view(routes.create_event, route_name='create_event')
+  config.add_route('get_log_in_account', '/logIntoAccount')
+  config.add_view(routes.get_log_in_account, route_name='get_log_in_account')
+
+  # config.add_route('create_event', '/createEvent')
+  # config.add_view(routes.create_event, route_name='create_event')
 
   # added these 3 routes to match what I wrote in the the js file
   config.add_route('venue_login_page', '/venue_login')

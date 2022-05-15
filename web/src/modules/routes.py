@@ -10,29 +10,43 @@ def get_home(req):
     :type: FileResponse()
     """
     # this is how to acccess api instantiation
-    settings.api_interface.doSomething()
+    # settings.api_interface.doSomething()
     return FileResponse("index.html")
 
-def get_temp(req):
+def get_create_account(req):
     """
-    Sends a file response for a temporary webpage
+    Sends a file response for the create account webpage html file
 
     Returns:
     Returns a FileResponse object that is associated with this route
     :type: FileResponse()
     """
-    return FileResponse("pages/temp.html")
+    # this is how to acccess api instantiation
+    # settings.api_interface.doSomething()
+    return FileResponse("/pages/createProfile.html")
 
-def create_event(req):
+def get_log_in_account(req):
     """
-    Creates a new Event
+    Sends a file response for the log in webpage html file
 
     Returns:
     Returns a FileResponse object that is associated with this route
     :type: FileResponse()
     """
+    # this is how to acccess api instantiation
+    # settings.api_interface.doSomething()
+    return FileResponse("/pages/login.html")
+
+# def create_event(req):
+#     """
+#     Creates a new Event
+
+#     Returns:
+#     Returns a FileResponse object that is associated with this route
+#     :type: FileResponse()
+#     """
     
-    return FileResponse("index.html")
+#     return FileResponse("index.html")
 
 def create_account(req):
     """
@@ -45,7 +59,7 @@ def create_account(req):
     :type: FileResponse()
     """
     
-    return FileResponse("home.html")
+    return FileResponse("index.html")
 
 def login_verify(req):
     """
@@ -57,7 +71,7 @@ def login_verify(req):
     :type: FileResponse()
     """
     
-    return FileResponse("home.html")
+    return FileResponse("index.html")
 
 def venue_login_page(req):
 
@@ -69,4 +83,4 @@ def venue_login_page(req):
     :type: FileResponse()
     """
     
-    return FileResponse("home.html")
+    return FileResponse("index.html")
