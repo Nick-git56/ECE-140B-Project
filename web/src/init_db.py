@@ -42,7 +42,8 @@ root_cursor = root_db.cursor()
 # create database
 root_cursor.execute(f"CREATE DATABASE IF NOT EXISTS {db_name};")
 
-root_cursor.execute(f"CREATE USER '{db_user}'@'{db_host}' IDENTIFIED BY '{db_user_pass}';")
+# root_cursor.execute(f"CREATE USER '{db_user}'@'{db_host}' IDENTIFIED BY '{db_user_pass}';")
+root_cursor.execute(f"GRANT ALL PRIVILEGES ON {db_name}.* TO '{db_user}'@'{db_host}';") # why does this work?
 root_cursor.execute(f"USE {db_name}")
 
 # # CAUTION!!! CAUTION!!! CAUTION!!! CAUTION!!! CAUTION!!! CAUTION!!! CAUTION!!!
@@ -64,8 +65,8 @@ tables.create_tables(root_cursor)
 root_db.commit()
 
 # grant privileges to user
-for table in complete_tablesList:
-  root_cursor.execute(f"GRANT INSERT, UPDATE, DELETE, SELECT, REFERENCES ON {db_name}.{table} TO '{db_user}'@'{db_host}'")
+# for table in complete_tablesList:
+#   root_cursor.execute(f"GRANT INSERT, UPDATE, DELETE, SELECT, REFERENCES ON {db_name}.{table} TO '{db_user}'@'{db_host}'")
 # # grant privileges to customer
 # for table in customers_tableList:
 #   root_cursor.execute(f"GRANT INSERT, UPDATE, DELETE, SELECT, REFERENCES ON {db_name}.{table} TO '{db_customer}'@'{db_host}'")
