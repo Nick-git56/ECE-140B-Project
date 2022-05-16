@@ -23,17 +23,17 @@ db_name = os.environ['MYSQL_DATABASE']
 db_user = os.environ['MYSQL_USER']
 db_user_pass = os.environ['MYSQL_PASSWORD']
 
-db_root = os.environ['MYSQL_ROOT']
-db_root_pass = os.environ['MYSQL_ROOT_PASSWORD']
+# db_root = os.environ['MYSQL_ROOT']
+# db_root_pass = os.environ['MYSQL_ROOT_PASSWORD']
 
-db_vip = os.environ['MYSQL_VIP']
-db_vip_pass = os.environ['MYSQL_VIP_PASSWORD']
+# db_vip = os.environ['MYSQL_VIP']
+# db_vip_pass = os.environ['MYSQL_VIP_PASSWORD']
 
-db_customer = os.environ['MYSQL_CUSTOMER']
-db_customer_pass = os.environ['MYSQL_CUSTOMER_PASSWORD']
+# db_customer = os.environ['MYSQL_CUSTOMER']
+# db_customer_pass = os.environ['MYSQL_CUSTOMER_PASSWORD']
 
-db_employee = os.environ['MYSQL_EMPLOYEE']
-db_employee_pass = os.environ['MYSQL_EMPLOYEE_PASSWORD']
+# db_employee = os.environ['MYSQL_EMPLOYEE']
+# db_employee_pass = os.environ['MYSQL_EMPLOYEE_PASSWORD']
 
 # root_db = mysql.connect(user=db_root, password=db_root_pass, host=db_host)
 root_db = mysql.connect(user=db_user, password=db_user_pass, host=db_host)
@@ -51,25 +51,25 @@ if(response_val=="y"):
     root_cursor.execute(f"drop table if exists {table};")
 
 # create user
-root_cursor.execute(f"CREATE USER '{db_vip}'@'{db_host}' IDENTIFIED BY '{db_vip_pass}';")
-# create customer
-root_cursor.execute(f"CREATE USER '{db_customer}'@'{db_host}' IDENTIFIED BY '{db_customer_pass}';")
-# create employee
-root_cursor.execute(f"CREATE USER '{db_employee}'@'{db_host}' IDENTIFIED BY '{db_employee_pass}';")
+# root_cursor.execute(f"CREATE USER '{db_vip}'@'{db_host}' IDENTIFIED BY '{db_vip_pass}';")
+# # create customer
+# root_cursor.execute(f"CREATE USER '{db_customer}'@'{db_host}' IDENTIFIED BY '{db_customer_pass}';")
+# # create employee
+# root_cursor.execute(f"CREATE USER '{db_employee}'@'{db_host}' IDENTIFIED BY '{db_employee_pass}';")
 
 # create tables
 tables.create_tables(root_cursor)
 root_db.commit()
 
 # grant privileges to user
-for table in vip_tableList:
-  root_cursor.execute(f"GRANT INSERT, UPDATE, DELETE, SELECT, REFERENCES ON {db_name}.{table} TO '{db_vip}'@'{db_host}'")
-# grant privileges to customer
-for table in customers_tableList:
-  root_cursor.execute(f"GRANT INSERT, UPDATE, DELETE, SELECT, REFERENCES ON {db_name}.{table} TO '{db_customer}'@'{db_host}'")
-# grant privileges to employee
-for table in employees_tableList:
-  root_cursor.execute(f"GRANT INSERT, UPDATE, DELETE, SELECT, REFERENCES ON {db_name}.{table} TO '{db_employee}'@'{db_host}'")
+# for table in vip_tableList:
+#   root_cursor.execute(f"GRANT INSERT, UPDATE, DELETE, SELECT, REFERENCES ON {db_name}.{table} TO '{db_vip}'@'{db_host}'")
+# # grant privileges to customer
+# for table in customers_tableList:
+#   root_cursor.execute(f"GRANT INSERT, UPDATE, DELETE, SELECT, REFERENCES ON {db_name}.{table} TO '{db_customer}'@'{db_host}'")
+# # grant privileges to employee
+# for table in employees_tableList:
+#   root_cursor.execute(f"GRANT INSERT, UPDATE, DELETE, SELECT, REFERENCES ON {db_name}.{table} TO '{db_employee}'@'{db_host}'")
 
 # GRANT CREATE, ALTER, DROP, INSERT, UPDATE, DELETE, SELECT, REFERENCES, RELOAD on *.* TO 'sammy'@'localhost' WITH GRANT OPTION;
 # GRANT PRIVILEGE ON database.table TO 'username'@'host';

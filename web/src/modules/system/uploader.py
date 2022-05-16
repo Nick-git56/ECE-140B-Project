@@ -21,8 +21,8 @@ class UserDataUploader(DataUploader):
     def __init__(self):
         uploader_type = "User Data Uploader"
         super().__init__(uploader_type)
-        self._db_user = os.environ['MYSQL_VIP']
-        self._db_pass = os.environ['MYSQL_VIP_PASSWORD']
+        # self._db_user = os.environ['MYSQL_VIP']
+        # self._db_pass = os.environ['MYSQL_VIP_PASSWORD']
 
 
 class CustomerDataUploader(DataUploader):
@@ -31,8 +31,8 @@ class CustomerDataUploader(DataUploader):
     def __init__(self):
         uploader_type = "Customer Data Uploader"
         super().__init__(uploader_type)
-        self._db_user = os.environ['MYSQL_CUSTOMER']
-        self._db_pass = os.environ['MYSQL_CUSTOMER_PASSWORD']
+        # self._db_user = os.environ['MYSQL_CUSTOMER']
+        # self._db_pass = os.environ['MYSQL_CUSTOMER_PASSWORD']
 
 
 class EmployeeDataUploader(DataUploader):
@@ -41,5 +41,5 @@ class EmployeeDataUploader(DataUploader):
     def __init__(self):
         uploader_type = "Employee Data Uploader"
         super().__init__(uploader_type)
-        self._db_user = os.environ['MYSQL_EMPLOYEE']
-        self._db_pass = os.environ['MYSQL_EMPLOYEE_PASSWORD']
+        # self._db_user = os.environ['MYSQL_EMPLOYEE']
+        # self._db_pass = os.environ['MYSQL_EMPLOYEE_PASSWORD']
