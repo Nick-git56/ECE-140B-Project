@@ -20,8 +20,11 @@ employees_tableList = ['Employees','Transactions','Products','Surveys','Users','
 db_host = os.environ['MYSQL_HOST']
 db_name = os.environ['MYSQL_DATABASE']
 
-db_root = os.environ['MYSQL_USER']
-db_root_pass = os.environ['MYSQL_PASSWORD']
+db_user = os.environ['MYSQL_USER']
+db_user_pass = os.environ['MYSQL_PASSWORD']
+
+db_root = os.environ['MYSQL_ROOT']
+db_root_pass = os.environ['MYSQL_ROOT_PASSWORD']
 
 db_vip = os.environ['MYSQL_VIP']
 db_vip_pass = os.environ['MYSQL_VIP_PASSWORD']
@@ -33,7 +36,7 @@ db_employee = os.environ['MYSQL_EMPLOYEE']
 db_employee_pass = os.environ['MYSQL_EMPLOYEE_PASSWORD']
 
 # root_db = mysql.connect(user=db_root, password=db_root_pass, host=db_host)
-root_db = mysql.connect(user=db_root, password=db_root_pass, host=db_host)
+root_db = mysql.connect(user=db_user, password=db_user_pass, host=db_host)
 root_cursor = root_db.cursor()
 
 # create database
