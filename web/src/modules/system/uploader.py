@@ -21,8 +21,8 @@ class UserDataUploader(DataUploader):
     def __init__(self):
         uploader_type = "User Data Uploader"
         super().__init__(uploader_type)
-        self._db_user = os.environ['MYSQL_USER']
-        self._db_pass = os.environ['MYSQL_USER_PASSWORD']
+        self._db_user = os.environ['MYSQL_VIP']
+        self._db_pass = os.environ['MYSQL_VIP_PASSWORD']
 
 
 class CustomerDataUploader(DataUploader):

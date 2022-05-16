@@ -17,8 +17,15 @@ class API:
     def doSomething(self):
         print("The API object")
 
-    def create_event(self):
+    def create_event(self,data):
         """Create a new Event
+
+        Arguments:
+        :param data: dictionary that contains data collected from website
+        :type data: str
+
+        Returns:
+        
         """
         pass
 
