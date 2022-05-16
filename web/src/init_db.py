@@ -21,7 +21,7 @@ db_host = os.environ['MYSQL_HOST']
 db_name = os.environ['MYSQL_DATABASE']
 
 db_user = os.environ['MYSQL_USER']
-db_user_pass = os.environ['MYSQL_PASSWORD']
+db_user_pass = os.environ['MYSQL_ROOT_PASSWORD']
 
 # db_root = os.environ['MYSQL_ROOT']
 # db_root_pass = os.environ['MYSQL_ROOT_PASSWORD']
