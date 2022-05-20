@@ -2,24 +2,21 @@ import numpy
 import random
 import matplotlib.pyplot as plt
 
+node_types = ["tag","anchor","gateway"]
+
 class Network:
-    node_types = ["tag","anchor","gateway"]
-    node_count_by_type = dict(zip(node_types, [0]*len(node_types)))
-    node_id_list = []
+    def __init__(self):
+        # KV pair = Type : count
+        self.node_count_by_type = dict(zip(node_types, [0]*len(node_types)))
+        self.node_id_list = []
     
     def __repr__(self):
         return f'Node count {Network.node_count_by_type}, print speed = {Network.update_rate}'
-    
-    #TODO implement something like this for duplicate checking
-#     def add_node(self,node_type,node_id):
-#         if node_id not in node_id_list:
-#             name = node_type + node_count_by_type[node_type]
-            
 
 class Node(Network):
     #TODO name can have a function that assigns a node to a specific person or their system ID
-    def __init__(self,node_type,node_id,name):
-        super(Node,self).__init__()
+    def __init__(self,node_type_list,node_type,node_id,name):
+        super().__init__(self)
         
         #TODO how to refer to a specific network here (e.g. stadium, concert_venue)
         assert node_type in Network.node_types
@@ -55,7 +52,7 @@ class SimulatedNode:
         self.id = node_id        
         self.active = False
         self.position = numpy.array([0,0,0])
-        self.position_history = []
+        self.position_history = [] #TODO prepend history
         
     def __repr__(self):
         return f'Node type: {self.type}, located at {self.position}.'
@@ -88,13 +85,17 @@ tags_list = ["TI:PS:LA:LA:PO:EH",
             "TI:PS:LA:LA:PO:EL",
             "TI:PA:LA:LA:PO:EL",
             "TI:AD:LA:LA:PO:EL",
-            "TI:PS:GG:LA:PO:EL"]
+            "TI:PS:GG:LA:PO:EL",
+            "ZI:PS:LA:LA:PO:EL",
+            "ZI:PA:LA:LA:PO:EL",
+            "ZI:AD:LA:LA:PO:EL",
+            "ZI:PS:GG:LA:PO:EL"]
 
 if __name__ == "__main__":    
     simulated_tags = {tags_list[idx]: SimulatedNode('tag',tags_list[idx],name=f'tag{idx}') for idx in range(len(tags_list))}
     detected_tags = {}
     
-    for _ in range(100):
+    for _ in range(2000):
         received_id = numpy.random.choice(tags_list)
         received_position = simulated_tags[received_id].get_random_position_updates()
         received_packet = {"tag_ID": received_id, "position_data": received_position}
