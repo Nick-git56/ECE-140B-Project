@@ -19,6 +19,14 @@ class Node:
         self.name = name
         self.node_type = type
         self.node_id = id
+        self.pos = (0,0,0)
+        self.history = []
+
+class SimulatedNode(Node):
+    def __init__(self,type,id,name):
+        super().__init__(type,id,name)
+        
+        self.history = simulatedData
 
 class Network:
     """Primary interface for 
