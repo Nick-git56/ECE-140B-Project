@@ -9,9 +9,10 @@ import mysql.connector as mysql
 from dotenv import load_dotenv
 import os
 
-from modules import settings,routes
+# from modules import settings,routes
+from routes import routes
 
-load_dotenv('credentials.env')
+# load_dotenv('credentials.env')
 # db_user = os.environ['MYSQL_ROOT']
 # db_pass = os.environ['MYSQL_ROOT_PASSWORD']
 # db_name = os.environ['MYSQL_DATABASE']
@@ -61,7 +62,7 @@ if __name__=="__main__":
   app = getController()
 
   # create API object and make it accessible globally
-  settings.settings()
+  # settings.settings()
 
   # start server
   server = make_server('0.0.0.0', 6000, app)

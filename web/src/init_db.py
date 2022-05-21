@@ -13,9 +13,9 @@ from dotenv import load_dotenv
 load_dotenv('credentials.env')
 
 complete_tablesList = ['Customers','Events','Companies','Suites','Services','Users','Employees','Transactions','Surveys','Products','RFIDLogs','LocationLogs']
-vip_tableList = ['Users','Surveys','LocationLogs',]
-customers_tableList = complete_tablesList
-employees_tableList = ['Employees','Transactions','Products','Surveys','Users','Services']
+# vip_tableList = ['Users','Surveys','LocationLogs',]
+# customers_tableList = complete_tablesList
+# employees_tableList = ['Employees','Transactions','Products','Surveys','Users','Services']
 
 db_host = os.environ['MYSQL_HOST']
 db_name = os.environ['MYSQL_DATABASE']
