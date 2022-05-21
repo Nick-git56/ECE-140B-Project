@@ -43,7 +43,7 @@ root_cursor = root_db.cursor()
 root_cursor.execute(f"CREATE DATABASE IF NOT EXISTS {db_name};")
 
 # root_cursor.execute(f"CREATE USER '{db_user}'@'{db_host}' IDENTIFIED BY '{db_user_pass}';")
-root_cursor.execute(f"GRANT ALL PRIVILEGES ON {db_name}.* TO '{db_user}'@'{db_host}';") # why does this work?
+#root_cursor.execute(f"GRANT ALL PRIVILEGES ON {db_name}.* TO '{db_user}'@'{db_host}';") # why does this work?
 root_cursor.execute(f"USE {db_name}")
 
 # # CAUTION!!! CAUTION!!! CAUTION!!! CAUTION!!! CAUTION!!! CAUTION!!! CAUTION!!!
@@ -77,7 +77,7 @@ root_db.commit()
 # GRANT CREATE, ALTER, DROP, INSERT, UPDATE, DELETE, SELECT, REFERENCES, RELOAD on *.* TO 'sammy'@'localhost' WITH GRANT OPTION;
 # GRANT PRIVILEGE ON database.table TO 'username'@'host';
 # root_cursor.execute(f"GRANT ALL PRIVILEGES ON agile_db.* TO '{db_user}'@'{db_host}';")
-root_cursor.execute("FLUSH PRIVILEGES;")
+#root_cursor.execute("FLUSH PRIVILEGES;")
 
 root_db.commit()
 root_cursor.close()
