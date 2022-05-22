@@ -18,7 +18,7 @@ body {
 
 }
 .diver{
-align-items: center;
+  align-items: center;
   justify-content: center;
 }
 .container {
@@ -82,6 +82,7 @@ color: white;
   outline: none;
   background: #eeeeee;
   transition: background 0.2s, border-color 0.2s;
+  margin:0.5rem;
 }
 
 .form__input:focus {
@@ -111,6 +112,7 @@ color: white;
   outline: none;
   cursor: pointer;
   background: var(--color-primary);
+  margin:0.5rem;
 }
 
 .form__button:hover {
@@ -133,4 +135,10 @@ color: white;
 
 .form__link:hover {
   text-decoration: underline;
+}
+
+p{
+  color:white;
+  font-size: 1.5rem;
+  text-align:center;
 }

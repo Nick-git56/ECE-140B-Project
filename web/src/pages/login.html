@@ -3,35 +3,27 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Login</title>
-    <meta name="author" content="Rusul Al Busultan">
+    <title> Home</title>
+    <meta name="author" content="Rusul AlBusultan">
     <meta name="description" content="A Place to Call Home">
 
     <link rel="stylesheet" type="text/css" href="css/login.css">
-    <link rel="icon" href="images/BANG.png">
+    <link rel="icon" href="BANG.png">
   </head>
-<body>
+  <body> 
     <div class="container">
-        <form class="form" id="login">
-            <h1 class="form__title">Login</h1>
-            <div class="form__message form__message--error"></div>
-            <div class="form__input-group">
-                <input type="text" class="form__input" autofocus placeholder="Username or email">
-                <div class="form__input-error-message"></div>
-            </div>
-            <div class="form__input-group">
-                <input type="password" class="form__input" autofocus placeholder="Password">
-                <div class="form__input-error-message"></div>
-            </div>
-            <button class="form__button" type="submit">Continue</button>
-            <p class="form__text">
-                <a href="#" class="form__link">Forgot your password?</a>
-            </p>
-            <p class="form__text">
-                <a class="form__link" href="./" id="linkCreateAccount">Don't have an account? Create account</a>
-            </p>
-        </form>
+      <form class="form" id="loginform" method="post">
+
+        <h1 class="form__title">Login</h1>
+
+        <input class="form__input" type="email" id="email" placeholder="E-mail">
+
+        <input class="form__input" type="password" id="password" placeholder="Password">
+              
+        <input class="form__input" type="number" id="comp_id" placeholder="Company ID">
+              
+        <input type="button" class="form__button" onclick=login() value="Login">
+      </form>
     </div>
-    <script src="./js/login.js"></script>
-</body>
-</html>
+  </body>
+  <script src="./js/login.js"></script>
