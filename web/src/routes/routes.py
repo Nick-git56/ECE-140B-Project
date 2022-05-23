@@ -1,5 +1,6 @@
 from pyramid.response import FileResponse
-# import modules.settings
+from modules.settings import api_interface
+from modules.system.api import API
 
 def get_home(req):
     """
@@ -38,6 +39,12 @@ def get_login_verify(req):
         "username":     True,
         "password":     True,
     }
+
+    username_val = req['username']
+    pass_val = req['password']
+    new_account = False
+    # create API object and make it accessible globally
+    settings.settings(username_val,pass_val,new_account)
     
     return response
 
@@ -69,5 +76,11 @@ def get_account_verify(req):
         "username":     True,
         "password":     True,
     }
+
+    username_val = req['username']
+    pass_val = req['password']
+    new_account = True
+    # create API object and make it accessible globally
+    settings.settings(username_val,pass_val,new_account)
     
     return response

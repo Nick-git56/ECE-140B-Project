@@ -9,7 +9,7 @@ import mysql.connector as mysql
 from dotenv import load_dotenv
 import os
 
-# from modules import settings,routes
+from modules import settings
 from routes import routes
 
 # load_dotenv('credentials.env')
@@ -59,7 +59,7 @@ if __name__=="__main__":
   app = getController()
 
   # create API object and make it accessible globally
-  # settings.settings()
+  settings.settings()
 
   # start server
   server = make_server('0.0.0.0', 6000, app)
