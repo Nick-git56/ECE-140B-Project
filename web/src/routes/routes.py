@@ -22,7 +22,7 @@ def get_venue_login(req):
     :type: FileResponse()
     """
     
-    return FileResponse("login.html")
+    return FileResponse("pages/login.html")
 
 def get_login_verify(req):
     """
@@ -50,7 +50,7 @@ def get_create_account(req):
     :type: FileResponse()
     """
     
-    return FileResponse("createAccount.html")
+    return FileResponse("pages/createAccount.html")
 
 def get_account_verify(req):
     """
