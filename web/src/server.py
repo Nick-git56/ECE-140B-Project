@@ -31,24 +31,21 @@ def getController():
   config.add_route('get_home', '/')
   config.add_view(routes.get_home, route_name='get_home')
 
-  config.add_route('get_create_account', '/createAccount')
+  # login view
+  config.add_route('get_venue_login', '/venue_login')
+  config.add_view(routes.get_venue_login, route_name='get_venue_login')
+
+  # login form completed
+  config.add_route('get_login_verify', '/login_verify')
+  config.add_view(routes.get_login_verify, route_name='get_login_verify', renderer='json')
+
+  # create account view
+  config.add_route('get_create_account', '/create_account')
   config.add_view(routes.get_create_account, route_name='get_create_account')
 
-  config.add_route('get_log_in_account', '/logIntoAccount')
-  config.add_view(routes.get_log_in_account, route_name='get_log_in_account')
-
-  # config.add_route('create_event', '/createEvent')
-  # config.add_view(routes.create_event, route_name='create_event')
-
-  # added these 3 routes to match what I wrote in the the js file
-  config.add_route('venue_login_page', '/venue_login')
-  config.add_view(routes.venue_login_page, route_name='venue_login_page')
-
-  config.add_route('login_verify', '/login_verify')
-  config.add_view(routes.login_verify, route_name='login_verify')
-
-  config.add_route('create_account', '/create_account')
-  config.add_view(routes.create_account, route_name='create_account')
+  # create account form completed
+  config.add_route('get_account_verify', '/account_verify')
+  config.add_view(routes.get_account_verify, route_name='get_account_verify', renderer='json')
   # *************************************************************
 
   config.add_static_view(name='/', path='./public', cache_max_age=3600)

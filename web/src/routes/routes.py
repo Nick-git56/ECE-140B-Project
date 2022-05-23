@@ -1,86 +1,73 @@
 from pyramid.response import FileResponse
-import modules.settings
+# import modules.settings
 
 def get_home(req):
     """
-    Sends a file response for the main webpage html file
+    Send main webpage
 
     Returns:
     Returns a FileResponse object that is associated with this route
     :type: FileResponse()
     """
-    # this is how to acccess api instantiation
-    # settings.api_interface.doSomething()
+
     return FileResponse("index.html")
+
+def get_venue_login(req):
+
+    """
+    Send login view
+
+    Returns:
+    Returns a FileResponse object that is associated with this route
+    :type: FileResponse()
+    """
+    
+    return FileResponse("login.html")
+
+def get_login_verify(req):
+    """
+    Verify login information
+
+    Returns:
+    Returns a dictionary that stores states if information is verified or not
+    :type: Dict()
+    """
+
+    response = {
+        "verified":     True,
+        "username":     True,
+        "password":     True,
+    }
+    
+    return response
 
 def get_create_account(req):
     """
-    Sends a file response for the create account webpage html file
-
-    Returns:
-    Returns a FileResponse object that is associated with this route
-    :type: FileResponse()
-    """
-    # this is how to acccess api instantiation
-    # settings.api_interface.doSomething()
-    return FileResponse("/pages/createProfile.html")
-
-def get_log_in_account(req):
-    """
-    Sends a file response for the log in webpage html file
-
-    Returns:
-    Returns a FileResponse object that is associated with this route
-    :type: FileResponse()
-    """
-    # this is how to acccess api instantiation
-    # settings.api_interface.doSomething()
-    return FileResponse("/pages/login.html")
-
-# def create_event(req):
-#     """
-#     Creates a new Event
-
-#     Returns:
-#     Returns a FileResponse object that is associated with this route
-#     :type: FileResponse()
-#     """
-    
-#     return FileResponse("index.html")
-
-def create_account(req):
-    """
-    Creates a new account for customers
-    collects customer credentials and send the sent direct customer to the 
-    home/dashboard page
+    Send account view
 
     Returns:
     Returns a FileResponse object that is associated with this route
     :type: FileResponse()
     """
     
-    return FileResponse("index.html")
+    return FileResponse("createAccount.html")
 
-def login_verify(req):
+def get_account_verify(req):
     """
-    Verify customers credentials entered are correct  
-    and send customer to home/dashboard page
+    Verify account information
 
     Returns:
-    Returns a FileResponse object that is associated with this route
-    :type: FileResponse()
+    Returns a dictionary that stores states if information is verified or not
+    :type: Dict()
     """
+
+    response = {
+        "verified":     True,
+        "first_name":   True,
+        "last_name":    True,
+        "email":        True,
+        "username":     True,
+        "password":     True,
+    }
     
-    return FileResponse("index.html")
-
-def venue_login_page(req):
-
-    """
-    login page 
-
-    Returns:
-    Returns a FileResponse object that is associated with this route
-    :type: FileResponse()
-    """
-    
-    return FileResponse("index.html")
+    return response

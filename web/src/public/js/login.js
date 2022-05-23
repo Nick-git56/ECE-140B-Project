@@ -58,7 +58,10 @@ function create_account(){
     }
     })
     .then(response => response.json())
-    .then(data => { console.log('Success:', data); window.location.replace('http://localhost/Dashboard'); })
+    .then(data => {
+        console.log('Success:', data); 
+        window.location.replace('http://localhost/Dashboard'); 
+    })
     .catch((error) => { console.error('Error:', error); 
 });
 }
