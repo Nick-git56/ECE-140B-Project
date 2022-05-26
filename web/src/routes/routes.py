@@ -13,7 +13,7 @@ def get_home(req):
 
     return FileResponse("index.html")
 
-def get_venue_login(req):
+def get_organizer_login(req):
 
     """
     Send login view
@@ -40,12 +40,13 @@ def get_login_verify(req):
         "password":     True,
     }
 
-    username_val = req['username']
-    pass_val = req['password']
-    new_account = False
-    # create API object and make it accessible globally
-    settings.settings(username_val,pass_val,new_account)
-    
+    # test data so delete when done testing
+    username_val = req['username'] # test data
+    pass_val = req['password'] # test data
+    new_account = False # test data
+
+    # api_interface.
+
     return response
 
 def get_create_account(req):
@@ -68,6 +69,9 @@ def get_account_verify(req):
     :type: Dict()
     """
 
+    # Error message
+    result = None
+
     response = {
         "verified":     True,
         "first_name":   True,
@@ -77,10 +81,16 @@ def get_account_verify(req):
         "password":     True,
     }
 
-    username_val = req['username']
-    pass_val = req['password']
-    new_account = True
-    # create API object and make it accessible globally
-    settings.settings(username_val,pass_val,new_account)
+    # test data ... delete after testing
+    test={}
+    test['username'] = req['username']
+    test['password'] = req['password']
+    test['organizer_user'] = False # boolean for what type of user : VIP or Venue Organizer
+    result = api_interface.create_user(test)
+
+    # if result is None:
+    #     # no error
+    # else:
+    #     # error message
     
     return response

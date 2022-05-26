@@ -32,8 +32,8 @@ def getController():
   config.add_view(routes.get_home, route_name='get_home')
 
   # login view
-  config.add_route('get_venue_login', '/venue_login')
-  config.add_view(routes.get_venue_login, route_name='get_venue_login')
+  config.add_route('get_organizer_login', '/venue_login')
+  config.add_view(routes.get_organizer_login, route_name='get_organizer_login')
 
   # login form completed
   config.add_route('get_login_verify', '/login_verify')

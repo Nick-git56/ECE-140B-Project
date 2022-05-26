@@ -17,7 +17,7 @@
 // }
 
 function login(){
-    var email = document.getElementById("email").value;
+    var email = document.getElementById("username").value;
     var password = document.getElementById("password").value;
     var comp_id = document.getElementById("comp_id").value;
     // document.getElementById("").innerHTML = "";

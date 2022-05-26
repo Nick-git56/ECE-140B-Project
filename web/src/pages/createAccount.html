@@ -10,21 +10,40 @@
     <link rel="stylesheet" type="text/css" href="css/login.css">
     <link rel="icon" href="images/BANG.png">
   </head>
-<body>
-    <div class="container">
-        <form class="form" method="post" id="createAccount">
-            <h1 class="form__title">Create Account</h1>
-                <input type="number" id="comp_id" class="form__input" autofocus placeholder="Company ID">
-                
-                <input type="text" id="email" class="form__input" autofocus placeholder="Email Address">
-               
-                <input type="password" id="password" class="form__input" autofocus placeholder="Password">
-                
-                <input type="password" id="conf_password" class="form__input" autofocus placeholder="Confirm password">
-                
-            <input type="button" class="form__button" onclick=create_account() value="Create Account">
-        </form>
-    </div>
-    <script src="./js/login.js"></script>
-</body>
+  <body>
+      <img src="BANG.jpg" alt="Logo">
+        <div class="container">
+            <form class="form" method="post" id="createAccount">
+                <h1 class="form__title">Create Account</h1>
+                    
+                    <input type="text" id="email" class="form__input" autofocus placeholder="Email Address">
+    
+                    <input type="text" id="username" class="form__input" autofocus placeholder="Username">
+    
+                    <input type="password" id="password" class="form__input" autofocus placeholder="Password">
+                    
+                    <input type="password" id="conf_password" class="form__input" autofocus placeholder="Confirm password">
+              
+              <label for="userType">Who are you:</label>
+    
+              <select name="userType" id="userType">
+                <option value="business">Business</option>
+                <option value="employee">Employee</option>
+                <option value="vip">VIP</option>
+              </select>
+              
+                    <input type="text" inputmode="numeric" id="comp_id" class="form__input" autofocus placeholder="Company ID">
+                    
+                <input type="button" class="form__button" onclick=create_account() value="Create Account">
+            </form>
+          
+          <p>
+            Already have an account? <a href="/create_account" style="text-decoration: none">Sign in</a>
+          </p>
+          <p>
+            Need a company ID? <a href="" style="text-decoration: none">Contact us</a>
+          </p>
+        </div>
+    </body>
+        <script src="./js/login.js"></script>
 </html>

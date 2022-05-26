@@ -11,19 +11,33 @@
     <link rel="icon" href="BANG.png">
   </head>
   <body> 
-    <div class="container">
-      <form class="form" id="loginform" method="post">
-
-        <h1 class="form__title">Login</h1>
-
-        <input class="form__input" type="email" id="email" placeholder="E-mail">
-
-        <input class="form__input" type="password" id="password" placeholder="Password">
-              
-        <input class="form__input" type="number" id="comp_id" placeholder="Company ID">
-              
-        <input type="button" class="form__button" onclick=login() value="Login">
-      </form>
-    </div>
-  </body>
+      <img src="BANG.jpg" alt="Logo">
+        <div class="container">
+          <form class="form" id="loginform" method="post">
+    
+            <h1 class="form__title">Login</h1>
+    
+            <input class="form__input" type="username" id="username" placeholder="Username">
+    
+            <input class="form__input" type="password" id="password" placeholder="Password">
+    
+            <p>
+              <a href="" style="text-decoration: none">Forgot your password?</a>
+            </p>
+                  
+            <!-- <input class="form__input" type="number" id="comp_id" placeholder="Company ID"> -->
+                  
+            <input type="button" class="form__button" onclick=login() value="Login">
+          </form>
+          
+          <hr>
+    
+          <p>
+            Don't have an account? 
+            <a href="/create_account" style="text-decoration: none">Sign up</a>
+          <p>
+            
+        </div>
+      </body>
   <script src="./js/login.js"></script>
+</html>

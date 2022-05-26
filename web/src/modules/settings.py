@@ -1,10 +1,10 @@
 """
 """
-from modules.system.api import API_Storage
+from modules.system.api import API
 
 
 def settings():
     """
     """
     global api_interface
-    api_interface = API_Storage()
+    api_interface = API()
