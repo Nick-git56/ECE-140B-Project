@@ -8,8 +8,8 @@ class DataUploader:
     def __init__(self,uploader_type):
         print("Data Uploader object created")
         self._uploader_type = uploader_type
-        self._db_host = os.environ['MYSQL_HOST']
-        self._db_name = os.environ['MYSQL_DATABASE']
+        # self._db_host = os.environ['MYSQL_HOST']
+        # self._db_name = os.environ['MYSQL_DATABASE']
 
     def _get_type(self):
         return self._uploader_type

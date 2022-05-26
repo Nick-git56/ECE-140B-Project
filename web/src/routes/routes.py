@@ -1,6 +1,7 @@
 from pyramid.response import FileResponse
-from modules.settings import api_interface
-from modules.system.api import API
+# from modules.settings import api_interface
+from modules import settings
+# from modules.system.api import API
 
 def get_home(req):
     """
@@ -10,6 +11,7 @@ def get_home(req):
     Returns a FileResponse object that is associated with this route
     :type: FileResponse()
     """
+    settings.api_interface.doSomething()
 
     return FileResponse("index.html")
 
@@ -86,7 +88,7 @@ def get_account_verify(req):
     test['username'] = req['username']
     test['password'] = req['password']
     test['organizer_user'] = False # boolean for what type of user : VIP or Venue Organizer
-    result = api_interface.create_user(test)
+    # result = api_interface.create_user(test)
 
     # if result is None:
     #     # no error
