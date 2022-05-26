@@ -94,3 +94,14 @@ def get_account_verify(req):
     #     # error message
     
     return response
+
+def get_contact_us(req):
+    """
+    Send contact us view
+
+    Returns:
+    Returns a FileResponse object that is associated with this route
+    :type: FileResponse()
+    """
+    
+    return FileResponse("pages/contactUs.html")

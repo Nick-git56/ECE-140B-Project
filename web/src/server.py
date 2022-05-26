@@ -46,6 +46,10 @@ def getController():
   # create account form completed
   config.add_route('get_account_verify', '/account_verify')
   config.add_view(routes.get_account_verify, route_name='get_account_verify', renderer='json')
+
+  # contact us view
+  config.add_route('get_contact_us', '/contactUs')
+  config.add_view(routes.get_contact_us, route_name='get_contact_us')
   # *************************************************************
 
   config.add_static_view(name='/', path='./public', cache_max_age=3600)
