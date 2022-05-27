@@ -12,6 +12,8 @@ import os
 from modules import settings
 from routes import routes
 
+# NOTE: CLEAR CACHE WHEN LOADING WEBPAGE!!!!!!!(ctr+F5)
+
 # load_dotenv('credentials.env')
 # db_user = os.environ['MYSQL_ROOT']
 # db_pass = os.environ['MYSQL_ROOT_PASSWORD']
