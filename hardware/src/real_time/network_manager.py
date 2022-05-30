@@ -10,6 +10,7 @@ import warnings
 from shapely.errors import ShapelyDeprecationWarning
 from sympy import differentiate_finite
 warnings.filterwarnings("ignore", category=ShapelyDeprecationWarning) 
+# import RFID
 
 # create logger
 logger = logging.getLogger('network_manager')
@@ -20,8 +21,18 @@ formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(messag
 ch.setFormatter(formatter)
 logger.addHandler(ch)
 
-NODE_TYPES = ["tag","anchor","gateway","rfid"]
+NODE_TYPES = ["tag","anchor","gateway"]
 SECTION_TYPES = ["suite","bathroom","vendor","commons"]
+RESOURCE_PATH = "media/"
+
+SIM_BRACELET_DICT = {"TI:PS:LA:LA:PO:EH":"[45, 27, 129, 56]",\
+                    "TA:PS:LG:LA:PO:EF":"[45, 27, 19, 56]",\
+                    "TI:PS:ER:LA:PO:EF":"[45, 27, 129, 59]"
+                    }
+BRACELET_DICT = {"TI:PS:LG:LA:PO:EH":"[45, 227, 129, 56]",\
+                 "TI:PS:LG:LA:PO:EF":"[99, 197, 79, 28]"
+                }
+BRACELET_DICT.update(SIM_BRACELET_DICT)
 
 class NetworkManagner:
     """
@@ -73,7 +84,7 @@ class Network:
     def get_node_name(self, node_type, node_id):
         return self.node_dict[node_type][node_id].name
 
-    def add_node(self,node_type,node_id,name=None,position=None,color=None,section=None):
+    def add_node(self,node_type,node_id,name=None,position=None,color=None,section=None,products=None):
         assert node_type in self.node_types, "Not an available type"
         assert node_id not in self.node_dict[node_type].keys(), "ID already in use"
         if node_type == "tag":
@@ -85,11 +96,11 @@ class Network:
             if not position:
                 position = numpy.asarray([float(item) for item in input("Enter x,y,z [m]: ").split()])
             self.node_dict[node_type][node_id] = Anchor(node_type,node_id,name,self,position,color)
-        elif node_type == "rfid":
+        elif node_type == "gateway":
             if not position:
                 position = numpy.asarray([float(item) for item in input("Enter x,y,z [m]: ").split()])
-            self.node_dict[node_type][node_id] = RFID(node_type,node_id,name,self,position,color,section)
-    
+            self.node_dict[node_type][node_id] = Gateway(node_type,node_id,name,self,position,color,section,products)
+
         logger.info(f"Added {node_type} {node_id} ({name}) to the {self.network_name} network")
         return self.node_dict[node_type][node_id]
 
@@ -129,7 +140,7 @@ class Section:
     #     self.vendor = vendor
 
 class Node:
-    def __init__(self,node_type,node_id,name,network,simulation=True): #TODO: put it, on top of the file in settings, simulation setting is on by default
+    def __init__(self,node_type,node_id,name,network,simulation=True): #TODO: on top of the file in settings, simulation setting is on by default
         self.type = node_type
         self.id = node_id
         self.name = name
@@ -180,7 +191,7 @@ class Tag(Node):
         pass
 
     def sim_update_position(self):
-
+        #TODO: first change_objective gets called during a position update so the gateway update has to go after position updates. Make more flexible
         def change_objective():
             sample = random.uniform(0,1)
             initial_distribution=numpy.array([[0.2,0.5,0.3]])
@@ -195,11 +206,6 @@ class Tag(Node):
 
         if self.objective.contains(self.position):
             #i.e. when you arrive to the destination, change it
-            sample = random.uniform(0,1)
-            #grab a beer while you're at it
-            if sample > 0.4:
-                self.objective.vendor.record_transaction(self.id,"beer",10)
-
             self.objective = change_objective()
 
         def get_random_increment(destination):
@@ -209,13 +215,7 @@ class Tag(Node):
         random_increment = get_random_increment(self.objective.centroid)
         self.position += random_increment
 
-        # transition_matrix = numpy.array([[0,1,0,0,0,],\
-        #                                 [0,0,1,0,0,0],\
-        #                                 [0,0,0,1,0,0],\
-        #                                 [0,0,0,0,1,0],\
-        #                                 [0,0,0,0,0,1],\
-        #                                 [1,0,0,0,0,0]])
-
+        #TODO:hardcoded = bad
         if self.position[0] < 0 or self.position[1] < 0 or self.position[0]>10 or self.position[1]<5:
             self.position -= random_increment*2
 
@@ -234,11 +234,10 @@ class Anchor(Node):
         else:
             self.color = color
 
-class RFID(Node):
-    def __init__(self,node_type,node_id,name,network,position,color=None,section=None):
+class Gateway(Node):
+    def __init__(self,node_type,node_id,name,network,position,color=None,section=None,products=None):
         super().__init__(node_type,node_id,name,network)
         self.name = name
-        self.active = True
         self.position = position
         if not color:
             self.color ='green'
@@ -246,13 +245,41 @@ class RFID(Node):
             self.color = color
         self.network = network
         self.section = section
+        self.active = True
+        self.products = products
+        #TODO:integrate Gateway class better with Gateway module
+        # self.scanner = RFID.Reader(self.active)
         self.transaction_history = []
+
+    def get_updates(self):
+        if self.simulated:
+            tag_id = random.choice(list(SIM_BRACELET_DICT.keys()))
+            tag = self.network.node_dict["tag"][tag_id]
+            if tag_id not in self.network.node_dict["tag"].keys():
+                logger.warning(f"Trying to execute transaction on an untracked tag... Make sure to check them in first!")
+
+            elif tag.objective.contains(tag.position):
+                sample = random.uniform(0,1)
+                if sample > 0.05:
+                    product_name = random.choice(list(self.products.keys()))
+                    self.record_transaction(tag.id,product_name,self.products[product_name])
+        """ IMPORTANT CODE: DON'T DELETE
+        elif not self.simulated:
+            if not self.scanner.previous_RFID == self.scanner.new_RFID and self.active:
+                self.scanner.previous_RFID = self.scanner.new_RFID
+                print(f"Found a new person: {self.scanner.new_RFID}!")
+                product_name = random.choice(list(self.products.keys()))
+                self.record_transaction(tag.id,product_name,self.products[product_name])
+                return self.scanner.new_RFID
+            elif not self.active:
+                print("scanner deactivated")
+        """
 
     def assign_section(self,section):
         self.section
 
     def check_in(self,tag_id,name=None,color='black'):
-        if tag_id not in self.network.node_dict["tag"]:
+        if tag_id not in self.network.node_dict["tag"].keys():
             self.network.add_node(node_type = "tag", node_id = tag_id, name = name, position=self.position, color = color)
         self.network.node_dict["tag"][tag_id].activate()
 
@@ -261,8 +288,8 @@ class RFID(Node):
     
     def record_transaction(self,tag_id,transaction_type,price):
         self.network.node_dict["tag"][tag_id].transaction_history.append({transaction_type:price})
-        self.network.node_dict["rfid"][self.id].transaction_history.append({transaction_type:price})
-        logger.info(f"Recorded transaction: {transaction_type} - ${price}, {tag_id} ({self.network.get_node_name('tag',tag_id)}) at {self.id} ({self.name}), {self.network} network")
+        self.network.node_dict["gateway"][self.id].transaction_history.append({transaction_type:price})
+        logger.info(f"Recorded transaction: {transaction_type} - ${price}, {tag_id} ({self.network.get_node_name('tag',tag_id)}) at {self.id} ({self.name}), {self.network.network_name} network")
 
 class Map:
     def __init__(self,network,map_image=None,dimensions=[16,8]):
@@ -300,30 +327,35 @@ class Map:
                 self.ax.scatter(x,y, s=50, c=anchor.color, marker='v', label=f'Anchor {anchor.name}')
                 self.ax.scatter(x,y, s=100000, c='red', alpha=0.1)
 
-            for RFID in self.node_dict["rfid"].values():
-                x,y = RFID.get_position()
-                self.ax.scatter(x,y, s=50, c=RFID.color, label=f'RFID {RFID.name}')
+            for Gateway in self.node_dict["gateway"].values():
+                x,y = Gateway.get_position()
+                self.ax.scatter(x,y, s=50, c=Gateway.color, label=f'Gateway {Gateway.name}')
                 self.ax.scatter(x,y, s=1000, c='green', alpha=0.1)
 
-    def plot_position_history(self, node_type=None, node_id=None):
+    def plot_position_history(self, length=None, node_type=None, node_id=None):
+
         if node_type and node_id:
             node = self.node_dict[node_type][node_id]
             x,y = node.get_position_history()
-            self.ax.scatter(x,y, s = 50, c=node.color, alpha=0.5,label=f'{node.type} {node.name}')
+            if not length: length=len(x)
+            self.ax.scatter(x[-length:],y[-length:], s = 50, c=node.color, alpha=0.5,label=f'{node.type} {node.name}')
+            self.ax.scatter(x[-1],y[x[-1]], s = 50, c=node.color, alpha=0.5)
 
         else:
             for tag in self.node_dict["tag"].values():
                 x,y = tag.get_position_history()
-                self.ax.plot(x,y, c=tag.color, alpha=0.5,label=f'Tag {tag.name}')
+                if not length: length=len(x)
+                self.ax.plot(x[-length:],y[-length:], c=tag.color, alpha=0.5,label=f'Tag {tag.name}')
+                self.ax.scatter(x[-1],y[-1], c=tag.color, alpha=0.5)
 
             for anchor in self.node_dict["anchor"].values():
                 x,y = anchor.get_position()
                 self.ax.scatter(x,y, s=50, c=anchor.color, marker='v', label=f'Anchor {anchor.name}')
                 self.ax.scatter(x,y, s=100000, c='red', alpha=0.1)
 
-            for RFID in self.node_dict["rfid"].values():
-                x,y = RFID.get_position()
-                self.ax.scatter(x,y, s=50, c=RFID.color, label=f'RFID scanner {RFID.name}')
+            for Gateway in self.node_dict["gateway"].values():
+                x,y = Gateway.get_position()
+                self.ax.scatter(x,y, s=50, c=Gateway.color, label=f'Gateway scanner {Gateway.name}')
                 self.ax.scatter(x,y, s=1000, c='green', alpha=0.1)
         
     def reset(self):
@@ -335,13 +367,14 @@ class Map:
         plt.ylim([0, self.dimensions[1]])
         plt.legend(loc='best')           
         plt.show()
+        plt.close()
 
 
 if __name__=="__main__":
     #init
     net_god = NetworkManagner()
     petco = net_god.add_network("petco park")
-    petco_map = Map(petco,map_image="test_map.jpg",dimensions=[10,5])
+    petco_map = Map(petco,map_image=RESOURCE_PATH + "test_map.jpg",dimensions=[10,5])
 
     #setup
     petco.add_section(section_type = "suite", name = "suite #1", vertex_list = numpy.array([[0,3],[0,5],[2,5],[2,3]]) ,color = 'orange')
@@ -350,11 +383,17 @@ if __name__=="__main__":
     petco.add_section(section_type = "bathroom", name = "wc #2", vertex_list = numpy.array([[5,3],[5,5],[6,5],[6,3]]) ,color = 'blue')
     petco.add_section(section_type = "suite", name = "suite #3", vertex_list = numpy.array([[6,3],[6,5],[8,5],[8,3]]) ,color = 'orange')
     petco.add_section(section_type = "suite", name = "suite #4", vertex_list = numpy.array([[8,3],[8,5],[10,5],[10,3]]) ,color = 'orange')
-    #TODO: for now the rfid needs to be declared before the section, fix
+    #TODO: for now the gateway needs to be declared before the section, fix
     ###
-    snack_guy = petco.add_node(node_type = "rfid", node_id = "TI:AA:LA:LA:PO:EH", name = "Scanner 1", position=[0.5,2,3.0], color = 'green')
-    bartender = petco.add_node(node_type = "rfid", node_id = "TI:AA:LA:LA:PO:EG", name = "Scanner 2", position=[7,3,3.0], color = 'green')
-    chef = petco.add_node(node_type = "rfid", node_id = "TI:AA:LA:LA:PO:EE", name = "Scanner 3", position=[1,2,3.0], color = 'green')
+
+
+    snack_menu = {"pretzels":12,"chocolate":5,"chips":12}
+    bar_menu = {"beer": 10, "drink": 20, "shot":10}
+    food_menu = {"chicken": 15,"pizza":25,"burrito":14}
+
+    snack_guy = petco.add_node(node_type = "gateway", node_id = "TI:AA:LA:LA:PO:EH", name = "snack", position=[0.5,2,3.0], color = 'green', products = snack_menu)
+    bartender = petco.add_node(node_type = "gateway", node_id = "TI:AA:LA:LA:PO:EG", name = "bar", position=[7,3,3.0], color = 'green', products = bar_menu)
+    chef = petco.add_node(node_type = "gateway", node_id = "TI:AA:LA:LA:PO:EE", name = "food", position=[1,2,3.0], color = 'green', products = food_menu)
 
     petco.add_section(section_type = "vendor", name = "snacks", vertex_list = numpy.array([[0,0],[0,1],[1.5,1],[1.5,0]]) ,color = 'green', vendor=snack_guy)
     petco.add_section(section_type = "vendor", name = "bar", vertex_list = numpy.array([[3,0],[3,0.5],[7,0.5],[7,0]]) ,color = 'green', vendor=bartender)
@@ -367,29 +406,42 @@ if __name__=="__main__":
     petco.add_node(node_type = "anchor", node_id = "TI:PS:XD:WA:PO:EH", name = "suite 3", position=[8,3,0])
     petco.add_node(node_type = "anchor", node_id = "TI:PS:XD:WA:PO:EY", name = "bar", position=[5,0,0])
     petco.add_node(node_type = "tag", node_id = "TI:PS:LG:LA:PO:EH", name = "Nick", position=[2,2,3.0], color = "blue")
-    petco.node_dict['rfid']['TI:AA:LA:LA:PO:EH'].check_in("TI:PS:LG:LA:PO:EH",name="Nick")
-    petco.node_dict['rfid']['TI:AA:LA:LA:PO:EH'].check_in("TI:PS:LA:LA:PO:EH",name="Karen",color='pink')
-    petco.node_dict['rfid']['TI:AA:LA:LA:PO:EH'].check_in("TI:PS:LG:LA:PO:EF",name="Marcin",color='black')
-    petco.node_dict['rfid']['TI:AA:LA:LA:PO:EH'].check_in("TA:PS:LG:LA:PO:EF",name="Raymond",color='blue')
-    petco.node_dict['rfid']['TI:AA:LA:LA:PO:EH'].check_in("TI:PS:ER:LA:PO:EF",name="Rusul",color='orange')
+
+    petco.node_dict['gateway']['TI:AA:LA:LA:PO:EH'].check_in("TI:PS:LG:LA:PO:EH",name="Nick")
+    petco.node_dict['gateway']['TI:AA:LA:LA:PO:EH'].check_in("TI:PS:LA:LA:PO:EH",name="Karen",color='pink')
+    petco.node_dict['gateway']['TI:AA:LA:LA:PO:EH'].check_in("TI:PS:LG:LA:PO:EF",name="Marcin",color='black')
+    petco.node_dict['gateway']['TI:AA:LA:LA:PO:EH'].check_in("TA:PS:LG:LA:PO:EF",name="Raymond",color='blue')
+    petco.node_dict['gateway']['TI:AA:LA:LA:PO:EH'].check_in("TI:PS:ER:LA:PO:EF",name="Rusul",color='orange')
     # petco.node_count_by_type("tag")
     # print(petco.update_rate)
     # print(petco)
     # print(petco.node_dict)
 
     #simulating movements
-    for _ in range(100):
+    trace = 10
+    simulation_time = 100
+    for timestep in range(simulation_time):
         petco.node_dict['tag']['TI:PS:LA:LA:PO:EH'].sim_update_position()
         petco.node_dict['tag']['TI:PS:LG:LA:PO:EH'].sim_update_position()
         petco.node_dict['tag']['TI:PS:LG:LA:PO:EF'].sim_update_position()
         petco.node_dict['tag']['TA:PS:LG:LA:PO:EF'].sim_update_position()
         petco.node_dict['tag']['TI:PS:ER:LA:PO:EF'].sim_update_position()
+        petco.node_dict['gateway']['TI:AA:LA:LA:PO:EH'].get_updates()
+        petco.node_dict['gateway']['TI:AA:LA:LA:PO:EG'].get_updates()
+        petco.node_dict['gateway']['TI:AA:LA:LA:PO:EE'].get_updates()
+        # if timestep < trace:
+        #     petco_map.plot_position_history(length=timestep)
+        # else:
+        #     petco_map.plot_position_history(length=trace)
+        # # petco_map.plot_position()
+        # petco_map.plot_section()
+        # petco_map.show()
+        # petco_map.reset()
+
 
     #mapping functions
-    petco_map.plot_section()
     petco_map.plot_position_history()
     petco_map.show()
-    # petco_map.reset()
     # petco_map.plot_position()
     # petco_map.show()
     # petco_map.plot_section("bathroom","wc #2")
@@ -397,9 +449,9 @@ if __name__=="__main__":
 
 
     # #transactions
-    # petco.node_dict['rfid']['TI:AA:LA:LA:PO:EH'].record_transaction('TI:PS:ER:LA:PO:EF',"food",100)
-    # petco.node_dict['rfid']['TI:AA:LA:LA:PO:EH'].record_transaction('TI:PS:ER:LA:PO:EF',"drinks",100)
-    # petco.node_dict['rfid']['TI:AA:LA:LA:PO:EH'].record_transaction('TI:PS:ER:LA:PO:EF',"cigarettes",100)
+    # petco.node_dict['gateway']['TI:AA:LA:LA:PO:EH'].record_transaction('TI:PS:ER:LA:PO:EF',"food",100)
+    # petco.node_dict['gateway']['TI:AA:LA:LA:PO:EH'].record_transaction('TI:PS:ER:LA:PO:EF',"drinks",100)
+    # petco.node_dict['gateway']['TI:AA:LA:LA:PO:EH'].record_transaction('TI:PS:ER:LA:PO:EF',"cigarettes",100)
     # print(petco.get_node_name('tag','TI:PS:ER:LA:PO:EF'))
     # print(petco.node_dict['tag']['TI:PS:ER:LA:PO:EF'].transaction_history)
     
