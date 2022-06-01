@@ -10,108 +10,80 @@
     <link rel="stylesheet" type="text/css" href="css/dash.css">
     <link rel="icon" href="BANG.png">
   </head>
-  <body>
-    <section id="menu">
-      <div class="logo">
-        <img src="" alt="">
-        <h2> Company Name </h2>
+ <body>
+  <section>
+    <ul>
+      <li><a class="active" href="#home">Dashboard</a></li>
+      <li><a href="#news">Settings</a></li>
+      <li><a href="#contact">Support</a></li>
+      <li><a href="#about">Logout</a></li>
+      <li><div>
+                <i class="far fa-search"></i>
+                <input type="text" placeholder="Search">
+        </div> </li>
+    </ul>
+        </section>
+      
+          <h3 class="i-name"> Dashboard </h3>
+          <div class="values"> 
+            <div id="myDIV" class="header">
+            <h2>Add Event</h2>
+            <button class="addBtn" onclick="openForm()">Create Event</button>
+            </div> </div>
+      
+           <div class="form-popup" id="myForm">
+          <form id="regForm" method="post">
+      
+      <!-- One "tab" for each step in the form: -->
+      <div class="tab">
+        <h1>Event Information: </h1>
+        <p>Event Name<input type="text" placeholder="Event name..." oninput="this.className = ''" name="ename" required></p>
+        <p>Event Category
+          <input type="text" placeholder="Event category..." oninput="this.className = ''" name="category" required></p>
+        <p>Event Location
+          <input type="text" placeholder="Street Name" oninput="this.className = ''" name="category" required>
+          <input type="text" placeholder="State" oninput="this.className = ''" name="category" required>
+          <input type="text" placeholder="City" oninput="this.className = ''" name="category"required><input type="number" placeholder="Zip Code" oninput="this.className = ''" name="category"required></p> 
+        
+        <p>Start date and time<input type="datetime-local" oninput="this.className = ''" name="start_date_time"> </p>
+         <p> End date and time<input type="datetime-local" oninput="this.className = ''" name="end_date_time"></p>
       </div>
-      <!-- Menu -->
-      <div class="items"> 
-        <li><i class="fa-solid fa-grid-horizontal"></i><a href="#">Dashboard</a></li>
-        <li><i class="fa-solid fa-gear"></i><a href="#">Settings</a></li>
-        <li><i class="fa-solid fa-headset"></i><a href="#">Support</a></li>
-        <li><i class="fa-solid fa-arrow-right-from-bracket"></i><a href="#">Logout</a></li> 
+      <div class="tab">
+        <h1>Services Information: </h1>
+        <h2>Service  #1 </h2> <p>Service #1 name<input type="text" oninput="this.className = ''" placeholder="Service name..."  name="s1name"></p>
+        <p>Product #1 
+          <input type="text" oninput="this.className = ''"  placeholder="Product name..." name="s1p1name"> 
+          <input type="number" placeholder="Product ID..." oninput="this.className = ''" name="s1p1id">
+         <input type="currency" placeholder="Product price in $..." oninput="this.className = ''" name="s1p1price"></p>
+      <p>Product #2 
+          <input type="text" oninput="this.className = ''"  placeholder="Product name..." name="s1p2name"> 
+          <input type="number" placeholder="Product ID..." oninput="this.className = ''" name="s1p2id">
+         <input type="number" placeholder="Product price in $..." oninput="this.className = ''" name="s1p2price"></p>
+      <p>Product #3 
+          <input type="text" oninput="this.className = ''"  placeholder="Product name..." name="s1p2name"> 
+          <input type="number" placeholder="Product ID..." oninput="this.className = ''" name="s1p2id">
+         <input type="number" placeholder="Product price in $..." oninput="this.className = ''" name="s1p2price"></p>
       </div>
-    </section>
-
-    <section id="interface">
-      <div class="navigation">
-        <div class="part1">
-          <div class="search">
-            <i class="far fa-search"></i>
-            <input type="text" placeholder="Search">
-          </div>
-        </div>
-        <div class="profile">
-          <i class="far fa-bell"></i>
-          <img src="images/BANG.png" alt="">
-        </div>
+      <div class="tab"><h1> Employee Info </h1>
+        <p>Service #1 Employee Name<input type="text" oninput="this.className = ''" placeholder="Employee Name..."></p>
+        <p>Service #1 Employee ID<input type="number" oninput="this.className = ''" placeholder="Employee ID..."></p>
+        
       </div>
-      <h3 class="i-name"> Dashboard </h3>
-      <div class="values"> 
-        <!-- Add events -->
-        <div id="myDIV" class="header">
-          <h2 style="margin:5px">Add Event</h2>
-          <input type="text" id="myInput" placeholder="Title...">
-          <span onclick="newElement()" class="addBtn">Add</span>
-        </div>
-        <div class="val-box">
-          <i class="fa-solid fa-tent"></i>
-          <div>
-            <h3> Event #</h3>
-            <span> ---- VIP </span>
-          </div>
-        </div>
-      </div>
-    </section>
-  </body>
-  <script src="./js/dash.js"></script><!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title> Home</title>
-    <meta name="author" content="Rusul AlBusultan">
-    <meta name="description" content="Venue Dashboard">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" />
-    <link rel="stylesheet" type="text/css" href="css/dash.css">
-    <link rel="icon" href="BANG.png">
-  </head>
-  <body>
-    <section id="menu">
-      <div class="logo">
-        <img src="" alt="">
-        <h2> Company Name </h2>
-      </div>
-      <!-- Menu -->
-      <div class="items"> 
-        <li><i class="fa-solid fa-grid-horizontal"></i><a href="#">Dashboard</a></li>
-        <li><i class="fa-solid fa-gear"></i><a href="#">Settings</a></li>
-        <li><i class="fa-solid fa-headset"></i><a href="#">Support</a></li>
-        <li><i class="fa-solid fa-arrow-right-from-bracket"></i><a href="#">Logout</a></li> 
-      </div>
-    </section>
-
-    <section id="interface">
-      <div class="navigation">
-        <div class="part1">
-          <div class="search">
-            <i class="far fa-search"></i>
-            <input type="text" placeholder="Search">
-          </div>
-        </div>
-        <div class="profile">
-          <i class="far fa-bell"></i>
-          <img src="images/BANG.png" alt="">
+      
+      <div style="overflow:auto;">
+        <div style="float:right;">
+          <button type="button" id="prevBtn" onclick="nextPrev(-1)">Previous</button>
+          <button type="button" id="nextBtn" onclick="nextPrev(1)">Next</button>
         </div>
       </div>
-      <h3 class="i-name"> Dashboard </h3>
-      <div class="values"> 
-        <!-- Add events -->
-        <div id="myDIV" class="header">
-          <h2 style="margin:5px">Add Event</h2>
-          <input type="text" id="myInput" placeholder="Title...">
-          <span onclick="newElement()" class="addBtn">Add</span>
-        </div>
-        <div class="val-box">
-          <i class="fa-solid fa-tent"></i>
-          <div>
-            <h3> Event #</h3>
-            <span> ---- VIP </span>
-          </div>
-        </div>
+      <!-- Circles which indicates the steps of the form: -->
+      <div style="text-align:center;margin-top:40px;">
+        <span class="step"></span>
+        <span class="step"></span>
+        <span class="step"></span>
+        <span class="step"></span>
       </div>
-    </section>
-  </body>
+    </form>
+      </div>
+    </body>
   <script src="./js/dash.js"></script>
