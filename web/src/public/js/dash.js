@@ -1,33 +1,5 @@
-// Create a new event box when clicking on the "Add" button
-function newElement() {
-    var li = document.createElement("li");
-    var inputValue = document.getElementById("myInput").value;
-    var t = document.createTextNode(inputValue);
-    li.appendChild(t);
-    if (inputValue === '') {
-      alert("You must write something!");
-    } else {
-      document.getElementById("myUL").appendChild(li);
-    }
-    document.getElementById("myInput").value = "";
-  
-    var span = document.createElement("SPAN");
-    var txt = document.createTextNode("\u00D7");
-    span.className = "close";
-    span.appendChild(txt);
-    li.appendChild(span);
-  
-    for (i = 0; i < close.length; i++) {
-      close[i].onclick = function() {
-        var div = this.parentElement;
-        div.style.display = "none";
-      }
-    }
-  }
-
 var currentTab = 0; // Current tab is set to be the first tab (0)
 
-//open form to create event
 function openForm() {
   document.getElementById("myForm").style.display = "block";
   showTab(currentTab); // Display the current tab
@@ -56,7 +28,7 @@ function nextPrev(n) {
   // This function will figure out which tab to display
   var x = document.getElementsByClassName("tab");
   // Exit the function if any field in the current tab is invalid:
-  if(n==0) // I set n==0 until I figure out how to validate only the first page of the form.
+  if(n==0) // I set n==0 until I figure out how to validate only the first form page.
     if (!validateForm()) 
       return false;
   // Hide the current tab:
@@ -104,3 +76,61 @@ function fixStepIndicator(n) {
   //... and adds the "active" class on the current step:
   x[n].className += " active";
 }
+
+function handleSubmit(event) {
+    event.preventDefault();
+
+    const data = new FormData(event.target);
+
+    const value = Object.fromEntries(data.entries());
+
+    console.log({ value });
+  
+  fetch('/create_event', {
+    method: 'POST', 
+    body: JSON.stringify(value),
+    headers:{
+        "Content-Type":"application/json; charset=UTF-8"
+    }
+    })
+    .then(response => response.json())
+    .then(data => { console.log('Success:', data); window.location.replace('/Dashboard'); })
+    .catch((error) => { console.error('Error:', error); 
+});
+  
+  }
+
+  const form = document.querySelector('form');
+  form.addEventListener('submit', handleSubmit);
+
+// GET created events from server
+async function getEvents() {
+    let url = '/get_events';
+    try {
+        let res = await fetch(url);
+        return await res.json();
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+// Print created events on dashboard html. 
+async function renderEvents() {
+    let events = await getEvents();
+    let html = 'dashboard';
+    events.forEach(event => {
+        let htmlSegment = `<div class="values">
+                            <div class="header">
+                            <h2>${event.ename}</h2>
+                            <p>${event.category}</p>
+                            </div>
+                        </div>`;
+
+        html += htmlSegment;
+    });
+
+    let container = document.querySelector('.events-list');
+    container.innerHTML = html;
+}
+
+renderUsers();
