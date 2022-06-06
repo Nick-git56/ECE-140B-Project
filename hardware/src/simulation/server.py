@@ -27,7 +27,17 @@ class Server:
     for x in my_result:
       print(x)
 
-  def insert_something(self,query,values):
+  def insert_record(self,query,values):
+    """Insert single record
+    """
+    self.root_cursor.execute(query,values)
+    self.root_db.commit()
+    print('---INSERT---')
+    print(self.root_cursor.rowcount, "record inserted")
+
+  def insert_records(self,query,values):
+    """Insert multiple records
+    """
     self.root_cursor.executemany(query,values)
     self.root_db.commit()
     print('---INSERT---')
@@ -41,4 +51,4 @@ if __name__ == "__main__":
             ('420', 'howdy', '78', '2022-02-01 04:41:00')
           ]
   server.show()
-  server.insert_something(query, values)
+  server.insert_record(query, values)

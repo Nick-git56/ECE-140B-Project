@@ -1,49 +1,141 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Login</title>
-    <meta name="author" content="Rusul Al Busultan">
-    <meta name="description" content="Create an Account and start making VIPs happier :) ">
 
-    <link rel="stylesheet" type="text/css" href="css/login.css">
-    <link rel="icon" href="images/BANG.png">
-  </head>
-  <body>
-      <img src="./images/BANG.png" alt="Logo">
-        <div class="container">
-            <form class="form" method="post" id="createAccount">
-                <h1 class="form__title">Create Account</h1>
-                    
-                    <input type="text" id="email" class="form__input" autofocus placeholder="Email Address">
-    
-                    <input type="text" id="username" class="form__input" autofocus placeholder="Username">
-    
-                    <input type="password" id="password" class="form__input" autofocus placeholder="Password">
-                    
-                    <input type="password" id="conf_password" class="form__input" autofocus placeholder="Confirm password">
-              
-              <label for="userType">Who are you:</label>
-    
-              <select name="userType" id="userType">
-                <option value="business">Business</option>
-                <option value="employee">Employee</option>
-                <option value="vip">VIP</option>
-              </select>
-              
-                    <input type="text" inputmode="numeric" id="comp_id" class="form__input" autofocus placeholder="Company ID">
-                    
-                <input type="button" class="form__button" onclick=create_account() value="Create Account">
-            </form>
-          
-          <p>
-            Already have an account? <a href="/create_account" style="text-decoration: none">Sign in</a>
-          </p>
-          <p>
-            Need a company ID? <a href="/contactUs" style="text-decoration: none">Contact us</a>
-          </p>
-        </div>
-    </body>
-        <script src="./js/login.js"></script>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>Login</title>
+  <meta name="author" content="Rusul Al Busultan">
+  <meta name="description" content="Create an Account and start making VIPs happier :) ">
+
+  <link rel="stylesheet" type="text/css" href="css/login.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="icon" href="images/BANG.png">
+</head>
+
+<body>
+  <div class="support">
+    <div class="demo-request">
+      <ul>
+        <li><a href="">Request a Demo</a></li>
+        <li><a href="">1.777.888.9999</a></li>
+        <li><a href="">Support</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <nav>
+    <div class="logo">
+      <a href="/" style="text-decoration: none">
+        <img src="./images/logo.png" alt="Logo">
+      </a>
+    </div>
+
+    <div class="navbar">
+
+      <ul class="nav-links">
+        <li><a href="/">Home</a></li>
+        <li class="center"><a href="/vip">VIP</a></li>
+        <li class="upward"><a href="/organizer">Organizer</a></li>
+        <li class="forward"><a href="/aboutUs">About Us</a></li>
+      </ul>
+
+    </div>
+    <div class="account-actions">
+      <div class="login"><a href="/venue_login" style="text-decoration: none">Sign In</a></div>
+      <div class="get-started"><a href="/create_account" style="text-decoration: none">Get Started</a></div>
+    </div>
+  </nav>
+</body>
+
+
+
+<body class="create-account-form">
+  <!--   <img src="BANG.jpg" alt="Logo"> -->
+  <div class="container">
+    <form class="form" method="post" id="createAccount">
+      <h1 class="form__title">Create Account</h1>
+
+      <input type="text" id="email" class="form__input" autofocus placeholder="Email Address">
+
+      <input type="text" id="username" class="form__input" autofocus placeholder="Username">
+
+      <input type="password" id="password" class="form__input" autofocus placeholder="Password">
+
+      <input type="password" id="conf_password" class="form__input" autofocus placeholder="Confirm password">
+
+      <label for="userType">Who are you:</label>
+
+      <select name="userType" id="userType">
+        <option value="business">Business</option>
+        <option value="employee">Employee</option>
+        <option value="vip">VIP</option>
+      </select>
+
+      <input type="text" inputmode="numeric" id="comp_id" class="form__input" autofocus placeholder="Company ID">
+
+      <input type="button" class="form__button" onclick=create_account() value="Create Account">
+    </form>
+
+    <p>
+      Already have an account? <a href="/create_account" style="text-decoration: none">Sign in</a>
+    </p>
+    <p>
+      Need a company ID? <a href="" style="text-decoration: none">Contact us</a>
+    </p>
+  </div>
+  <!--     <script src="./js/login.js"></script> -->
+</body>
+
+
+<body>
+  <div class="footer">
+
+    <div class="footer-left">
+      <ul class="info-selections">
+        <li><a href="">About Us</a></li>
+        <li><a href="">Our Blog</a></li>
+        <li><a href="">Press</a></li>
+        <li><a href="">Affiliates</a></li>
+        <li><a href="">Careers</a></li>
+        <li><a href="">Security</a></li>
+        <li><a href="">Legal & Disclosures</a></li>
+      </ul>
+
+      <p class="disclosure">Advisory services are offered for a fee by Banglet Advisors Corporation ("BAC"), a
+        registered investment adviser with the Securities and Exchange Commission. Registration does not imply a certain
+        level of skill or training. Optimizing venue services takes skill and our services does not garuntee that you
+        will get improved performance. All visuals are illustrative only. Featured individuals are actors or paid
+        spokespeople and not clients of BAC unless otherwise noted. Any testimonial of advisory services are
+        representative of the client’s views at the time it was collected. BAC is a wholly owned subsidiary of Banglet
+        Corporation ("BC"). <a href="">Read Full Disclosures »</a></p>
+    </div>
+
+    <div class="footer-right">
+
+      <ul class="social-icons">
+        <li><a href="#" class="fa fa-facebook"></a></li>
+        <li><a href="#" class="fa fa-twitter"></a></li>
+        <li><a href="#" class="fa fa-instagram"></a></li>
+        <li><a href="#" class="fa fa-linkedin"></a></li>
+        <li><a href="#" class="fa fa-youtube"></a></li>
+      </ul>
+
+      <div class="slogan">
+        <h1>We value your time.</h1>
+        <h1>We value your experiences.<sup class="trademark">TM.</sup></h1>
+      </div>
+
+      <div>
+
+      </div>
+    </div>
+
+    <div class="copyright">
+      <p>© 2022 Banglet Corporation. All rights reserved.</p>
+    </div>
+  </div>
+</body>
+<script src="./js/login.js"></script>
+
 </html>

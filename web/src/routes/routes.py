@@ -107,3 +107,47 @@ def get_contact_us(req):
     """
     
     return FileResponse("pages/contactUs.html")
+
+def get_organizer(req):
+    """
+    Send organizer view
+
+    Returns:
+    Returns a FileResponse object that is associated with this route
+    :type: FileResponse()
+    """
+    
+    return FileResponse("pages/organizerPage.html")
+
+def get_vip(req):
+    """
+    Send vip view
+
+    Returns:
+    Returns a FileResponse object that is associated with this route
+    :type: FileResponse()
+    """
+    
+    return FileResponse("pages/vipPage.html")
+
+def get_about_us(req):
+    """
+    Send about us view
+
+    Returns:
+    Returns a FileResponse object that is associated with this route
+    :type: FileResponse()
+    """
+    
+    return FileResponse("pages/aboutUs.html")
+
+# def get_contact_us(req):
+#     """
+#     Send contact us view
+
+#     Returns:
+#     Returns a FileResponse object that is associated with this route
+#     :type: FileResponse()
+#     """
+    
+#     return FileResponse("pages/contactUs.html")

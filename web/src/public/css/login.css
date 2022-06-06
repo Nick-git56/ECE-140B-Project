@@ -1,4 +1,17 @@
-body {
+/* Google Fonts Import Link */
+/* @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap'); */
+:root {
+  --red: hsl(0, 78%, 62%);
+  --cyan: hsl(180, 62%, 55%);
+  --orange: hsl(34, 97%, 64%);
+  --blue: hsl(212, 86%, 64%);
+  --varyDarkBlue: hsl(234, 12%, 34%);
+  --grayishBlue: hsl(229, 6%, 66%);
+  --veryLightGray: hsl(0, 0%, 98%);
+  --weight1: 200;
+  --weight2: 400;
+  --weight3: 600;
+
   --color-primary: #009579;
   --color-primary-dark: #007f67;
   --color-secondary: #9cb79e;
@@ -6,73 +19,230 @@ body {
   --color-success: #4bb544;
   --border-radius: 10px;
   --op: #0f3d79;
+}
+
+* {
   margin: 0;
-  height: 100vh;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+.support {
   display: flex;
+  height: 3rem;
+  width: 100%;
+  background: #696969;
+  align-items: right;
+  justify-content: right;
+}
+
+.demo-request {
+  display: flex;
+  float: right;
   align-items: center;
   justify-content: center;
+}
+
+.demo-request li {
+  list-style: none;
+  display: inline;
+  padding: 1rem 1rem;
+}
+
+.demo-request li a {
+  color: #333;
+  text-decoration: none;
+}
+
+nav {
+  display: flex;
+  background: #c1f7f5;
+}
+
+.navbar {
+  display: flex;
+  width: 100%;
+  height: 8rem;
+  align-items: center;
+  justify-content: center;
+}
+
+.logo {
+  float: left;
+  padding: 3rem 3rem;
+}
+
+.nav-links {
+  display: flex;
+  background: #fff;
+  padding: 20px 15px;
+  border-radius: 12px;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+}
+
+.nav-links li {
+  list-style: none;
+  margin: 0 12px;
+}
+
+.nav-links li a {
+  position: relative;
+  color: #333;
+  font-size: 20px;
+  font-weight: 500;
+  padding: 6px 0;
+  text-decoration: none;
+}
+
+.nav-links li a:before {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 3px;
+  width: 0%;
+  background: #34efdf;
+  border-radius: 12px;
+  transition: all 0.4s ease;
+}
+
+.nav-links li a:hover:before {
+  width: 100%;
+}
+
+.nav-links li.center a:before {
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.nav-links li.upward a:before {
+  width: 100%;
+  bottom: -5px;
+  opacity: 0;
+}
+
+.nav-links li.upward a:hover:before {
+  bottom: 0px;
+  opacity: 1;
+}
+
+.nav-links li.forward a:before {
+  width: 100%;
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.4s ease;
+}
+
+.nav-links li.forward a:hover:before {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+.account-actions {
+  width: 13rem;
+  display: flex;
+  float: right;
+  margin: 0 1rem;
+}
+
+.login {
+  margin: auto;
+  margin-right: 1rem;
+}
+
+.get-started {
+  margin: auto;
+  border-radius: 1rem;
+  padding: 0.5rem 0.5rem;
+  background: #fff;
+}
+
+.login-form {
+  height: 40rem;
+  /*   padding-bottom: 10rem; */
+  background: green;
+}
+
+.login-form body {
+  /*   --color-primary: #009579;
+--color-primary-dark: #007f67;
+--color-secondary: #9cb79e;
+--color-error: #cc3333;
+--color-success: #4bb544;
+--border-radius: 10px;
+--op: #0f3d79; */
+  /*   margin: 0; */
+  /*   height: 100vh; */
+  /*   display: flex;
+align-items: center;
+justify-content: center; */
   font-size: 2rem;
-  background: url(https://www.hamk.fi/wp-content/uploads/2020/12/DataAnalytiikka-1920x1080.jpeg);
-  background-size: cover;
-  backdrop-filter: blur(3px);
+  /*   background: url(https://www.hamk.fi/wp-content/uploads/2020/12/DataAnalytiikka-1920x1080.jpeg); */
+  /*   background-size: cover; */
+  /*   backdrop-filter: blur(3px); */
 
 }
-.diver{
+
+.login-form .diver {
   align-items: center;
   justify-content: center;
 }
-.container {
+
+.login-form .container {
   width: 400px;
   max-width: 400px;
-  margin: 1rem;
+  margin: auto;
+  margin-top: 3rem;
+  margin-bottom: 3rem;
   padding: 2rem;
   box-shadow: 0 0 40px rgba(0, 0, 0, 0.2);
   border-radius: var(--border-radius);
   background: #0f3d79;
 }
 
-.container,
+.login-form .container,
 .form__input,
 .form__button {
   font: 500 1rem 'Quicksand', sans-serif;
 }
 
-.form--hidden {
+.login-form .form--hidden {
   display: none;
 }
 
-.form > *:first-child {
+.login-form .form>*:first-child {
   margin-top: 0;
 }
 
-.form > *:last-child {
+.login-form .form>*:last-child {
   margin-bottom: 0;
 }
 
-.form__title {
+.login-form .form__title {
   margin-bottom: 2rem;
   text-align: center;
-color: white;
+  color: white;
 }
 
-.form__message {
+.login-form .form__message {
   text-align: center;
   margin-bottom: 1rem;
 }
 
-.form__message--success {
+.login-form .form__message--success {
   color: var(--color-success);
 }
 
-.form__message--error {
+.login-form .form__message--error {
   color: var(--color-error);
 }
 
-.form__input-group {
+.login-form .form__input-group {
   margin-bottom: 1rem;
 }
 
-.form__input {
+.login-form .form__input {
   display: block;
   width: 100%;
   padding: 0.75rem;
@@ -82,26 +252,26 @@ color: white;
   outline: none;
   background: #eeeeee;
   transition: background 0.2s, border-color 0.2s;
-  margin:0.5rem;
+  margin: 0.5rem;
 }
 
-.form__input:focus {
+.login-form .form__input:focus {
   border-color: var(--color-primary);
   background: #ffffff;
 }
 
-.form__input--error {
+.login-form .form__input--error {
   color: var(--color-error);
   border-color: var(--color-error);
 }
 
-.form__input-error-message {
+.login-form .form__input-error-message {
   margin-top: 0.5rem;
   font-size: 0.85rem;
   color: var(--color-error);
 }
 
-.form__button {
+.login-form .form__button {
   width: 100%;
   padding: 1rem 2rem;
   font-weight: bold;
@@ -112,33 +282,157 @@ color: white;
   outline: none;
   cursor: pointer;
   background: var(--color-primary);
-  margin:0.5rem;
+  margin: 0.5rem;
 }
 
-.form__button:hover {
+.login-form .form__button:hover {
   background: var(--color-primary-dark);
 }
 
-.form__button:active {
+.login-form .form__button:active {
   transform: scale(0.98);
 }
 
-.form__text {
+.login-form .form__text {
   text-align: center;
 }
 
-.form__link {
+.login-form .form__link {
   color: var(--color-secondary);
   text-decoration: none;
   cursor: pointer;
 }
 
-.form__link:hover {
+.login-form .form__link:hover {
   text-decoration: underline;
 }
 
-p{
-  color:white;
+.login-form p {
+  color: white;
   font-size: 1.5rem;
-  text-align:center;
+  text-align: center;
+}
+
+
+.footer {
+  height: 25rem;
+  width: 100%;
+  background: #000;
+  color: #fff;
+}
+
+.footer-left {
+  width: 50%;
+  height: 23rem;
+  float: left;
+}
+
+.info-selections {
+  padding-top: 5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.info-selections li {
+  list-style: none;
+  margin: 0 12px;
+}
+
+.info-selections li a {
+  position: relative;
+  color: #0099FF;
+  font-size: 20px;
+  font-weight: 500;
+  padding: 6px 0;
+  text-decoration: none;
+}
+
+.disclosure {
+  padding-top: 1rem;
+  margin: 2rem 2rem 2rem 2rem;
+}
+
+.disclosure a {
+  color: #0099FF;
+  text-decoration: none;
+}
+
+.footer-right {
+  width: 50%;
+  height: 23rem;
+  float: right;
+}
+
+.social-icons {
+  display: flex;
+  padding-top: 5rem;
+  text-decoration: none;
+  height: 7rem;
+  align-items: center;
+  justify-content: center;
+}
+
+.social-icons li {
+  list-style: none;
+  margin: 0 2rem;
+}
+
+.fa {
+  padding: 1rem;
+  width: 3rem;
+  height: 3rem;
+  text-align: center;
+  text-decoration: none;
+  margin: 5px 2px;
+  border-radius: 5rem;
+}
+
+.fa-facebook {
+  background: #3B5998;
+  color: white;
+  text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+}
+
+.fa-twitter {
+  background: #55ACEE;
+  color: white;
+  text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+}
+
+.fa-instagram {
+  background: #125688;
+  color: white;
+  text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+}
+
+.fa-linkedin {
+  background: #007bb5;
+  color: white;
+  text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+}
+
+.fa-youtube {
+  background: #bb0000;
+  color: white;
+  text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+}
+
+.slogan {
+  text-align: center;
+  padding-top: 5rem;
+}
+
+.trademark {
+  font-size: 1rem;
+}
+
+.vertical-line {
+  border-left: 0.1rem solid white;
+  height: 10rem;
+}
+
+.copyright {
+  height: 2rem;
+  text-align: center;
 }

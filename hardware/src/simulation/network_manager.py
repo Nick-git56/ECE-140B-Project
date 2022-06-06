@@ -251,6 +251,12 @@ class Gateway(Node):
         # self.scanner = RFID.Reader(self.active)
         self.transaction_history = []
 
+    def get_most_recent_transaction(self):
+        if self.transaction_history:
+            return self.transaction_history[-1]
+        else:
+            return None
+
     def get_updates(self):
         if self.simulated:
             tag_id = random.choice(list(SIM_BRACELET_DICT.keys()))
@@ -262,7 +268,13 @@ class Gateway(Node):
                 sample = random.uniform(0,1)
                 if sample > 0.05:
                     product_name = random.choice(list(self.products.keys()))
-                    return self.record_transaction(tag.id,product_name,self.products[product_name])
+                    self.record_transaction(tag.id,product_name,self.products[product_name])
+                    return True
+            else:
+                return False
+
+        else:
+            raise NotImplementedError
         """ IMPORTANT CODE: DON'T DELETE
         elif not self.simulated:
             if not self.scanner.previous_RFID == self.scanner.new_RFID and self.active:
