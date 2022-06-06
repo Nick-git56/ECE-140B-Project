@@ -20,7 +20,7 @@ function login(){
             if(response['verified'] == 'True') {
                 // enter dashboard
                 console.log('success');
-                window.location.href = '/dashboard';
+                window.location.href = '23.239.0.190/dashboard';
             }
             else{
                 // show error
