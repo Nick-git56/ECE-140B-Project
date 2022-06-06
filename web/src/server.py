@@ -73,6 +73,23 @@ def getController():
   # contact us view
   config.add_route('get_eventView', '/eventView')
   config.add_view(routes.get_eventView, route_name='get_eventView')
+  #*******************************************************************
+
+  # contact us view
+  config.add_route('get_employeeView', '/employeeView')
+  config.add_view(routes.get_employeeView, route_name='get_employeeView')
+
+  # contact us view
+  config.add_route('get_eventView', '/formView')
+  config.add_view(routes.get_eventView, route_name='get_eventView')
+
+  # contact us view
+  config.add_route('get_eventView', '/serviceView')
+  config.add_view(routes.get_eventView, route_name='get_eventView')
+
+  # contact us view
+  config.add_route('get_eventView', '/analyticsView')
+  config.add_view(routes.get_eventView, route_name='get_eventView')
 
   config.add_static_view(name='/', path='./public', cache_max_age=3600)
 
