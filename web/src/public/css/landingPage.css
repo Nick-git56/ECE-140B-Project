@@ -63,6 +63,12 @@ nav {
 .logo {
     float: left;
     padding: 3rem 3rem;
+    width: 3rem;
+    height: 3rem;
+    /* text-align: center;
+    text-decoration: none; */
+    margin: 5px 2px;
+    /* border-radius: 5rem; */
 }
 
 .nav-links {
