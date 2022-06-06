@@ -65,9 +65,9 @@ def getController():
   config.add_route('get_about_us', '/aboutUs')
   config.add_view(routes.get_about_us, route_name='get_about_us')
 
-  # # contact us view
-  # config.add_route('get_contact_us', '/contactUs')
-  # config.add_view(routes.get_contact_us, route_name='get_contact_us')
+  # contact us view
+  config.add_route('get_contact_us', '/contactUs')
+  config.add_view(routes.get_contact_us, route_name='get_contact_us')
 
   config.add_static_view(name='/', path='./public', cache_max_age=3600)
 
