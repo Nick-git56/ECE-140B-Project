@@ -48,6 +48,9 @@ def get_login_verify(req):
     new_account = False # test data
 
     # api_interface.
+    
+    if response['verified']:
+        return FileResponse("pages/dashboard.html")
 
     return response
 
@@ -141,7 +144,7 @@ def get_about_us(req):
     
     return FileResponse("pages/aboutUs.html")
 
-def get_test1(req):
+def get_dashboard(req):
     """
     
 
@@ -152,7 +155,7 @@ def get_test1(req):
     
     return FileResponse("pages/dashboard.html")
 
-def get_test2(req):
+def get_eventView(req):
     """
     
 

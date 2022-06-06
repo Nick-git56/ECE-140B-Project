@@ -17,15 +17,14 @@ function login(){
             // <p id="locSavedState"></p>
             // let locSavedVal = document.getElementById('locSavedState');
             // locSavedVal.innerHTML = "Location is saved!";
-            fetch('/test2')
-                .then(response=>response.json())
-                .then(function(response) {
-                    // response ...
-                    // <p id="locSavedState"></p>
-                    // let locSavedVal = document.getElementById('locSavedState');
-                    // locSavedVal.innerHTML = "Location is saved!";
-                    
-                });
+            if(response['verified']) {
+                // enter dashboard
+                console.log('success');
+            }
+            else{
+                // show error
+                console.log('failed');
+            }
         });
 
 //     fetch('http://localhost/login_verify', {

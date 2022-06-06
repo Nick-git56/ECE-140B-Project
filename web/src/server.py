@@ -67,12 +67,12 @@ def getController():
   #*********************************************************************
 
   # contact us view
-  config.add_route('get_test1', '/test1')
-  config.add_view(routes.get_test1, route_name='get_test1')
+  config.add_route('get_dashboard', '/dashboard')
+  config.add_view(routes.get_dashboard, route_name='get_dashboard')
 
   # contact us view
-  config.add_route('get_test2', '/test2')
-  config.add_view(routes.get_test2, route_name='get_test2')
+  config.add_route('get_eventView', '/eventView')
+  config.add_view(routes.get_eventView, route_name='get_eventView')
 
   config.add_static_view(name='/', path='./public', cache_max_age=3600)
 
