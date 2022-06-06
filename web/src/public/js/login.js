@@ -35,7 +35,7 @@ function login(){
     }
     })
     .then(response => response.json())
-    .then(data => { console.log('Success:', data); window.location.replace('http://localhost/Dashboard'); })
+    .then(data => { console.log('Success:', data); window.location.replace('http://localhost/test1'); })
     .catch((error) => { console.error('Error:', error); 
 });
 }
@@ -60,7 +60,7 @@ function create_account(){
     .then(response => response.json())
     .then(data => {
         console.log('Success:', data); 
-        window.location.replace('http://localhost/Dashboard'); 
+        window.location.replace('http://localhost/'); 
     })
     .catch((error) => { console.error('Error:', error); 
 });
