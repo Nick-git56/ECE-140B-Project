@@ -37,9 +37,9 @@ def get_login_verify(req):
     """
 
     response = {
-        "verified":     True,
-        "username":     True,
-        "password":     True,
+        "verified":     'True',
+        "username":     '',
+        "password":     '',
     }
 
     # test data so delete when done testing

@@ -17,7 +17,7 @@ function login(){
             // <p id="locSavedState"></p>
             // let locSavedVal = document.getElementById('locSavedState');
             // locSavedVal.innerHTML = "Location is saved!";
-            if(response['verified']) {
+            if(response['verified'] == 'True') {
                 // enter dashboard
                 console.log('success');
                 window.location.href = '/dashboard';
