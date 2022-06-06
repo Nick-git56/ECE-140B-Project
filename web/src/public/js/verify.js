@@ -9,7 +9,7 @@ function login(){
     // document.getElementById("").innerHTML = "";
     console.log(email, password, comp_id);
 
-    let URL = '/saveLocation/' + objectSelected + '/'+ gpsLoc.innerHTML;
+    let URL = '/login_verify';
     fetch(URL)
         .then(response=>response.json())
         .then(function(response) {
