@@ -20,6 +20,7 @@ function login(){
             if(response['verified']) {
                 // enter dashboard
                 console.log('success');
+                window.location.href = '/dashboard';
             }
             else{
                 // show error

@@ -48,9 +48,6 @@ def get_login_verify(req):
     new_account = False # test data
 
     # api_interface.
-    
-    if response['verified']:
-        return FileResponse("pages/dashboard.html")
 
     return response
 
