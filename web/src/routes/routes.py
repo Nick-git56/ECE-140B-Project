@@ -141,13 +141,13 @@ def get_about_us(req):
     
     return FileResponse("pages/aboutUs.html")
 
-def get_contact_us(req):
-    """
-    Send contact us view
+# def get_contact_us(req):
+#     """
+#     Send contact us view
 
-    Returns:
-    Returns a FileResponse object that is associated with this route
-    :type: FileResponse()
-    """
+#     Returns:
+#     Returns a FileResponse object that is associated with this route
+#     :type: FileResponse()
+#     """
     
-    return FileResponse("pages/contactUs.html")
+#     return FileResponse("pages/contactUs.html")
