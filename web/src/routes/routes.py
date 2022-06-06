@@ -162,3 +162,47 @@ def get_eventView(req):
     """
     
     return FileResponse("pages/event.html")
+
+def get_employeeView(req):
+    """
+    
+
+    Returns:
+    Returns a FileResponse object that is associated with this route
+    :type: FileResponse()
+    """
+    
+    return FileResponse("pages/employee.html")
+
+def get_formView(req):
+    """
+    
+
+    Returns:
+    Returns a FileResponse object that is associated with this route
+    :type: FileResponse()
+    """
+    
+    return FileResponse("pages/forms.html")
+
+def get_serviceView(req):
+    """
+    
+
+    Returns:
+    Returns a FileResponse object that is associated with this route
+    :type: FileResponse()
+    """
+    
+    return FileResponse("pages/services.html")
+
+def get_analyticsView(req):
+    """
+    
+
+    Returns:
+    Returns a FileResponse object that is associated with this route
+    :type: FileResponse()
+    """
+    
+    return FileResponse("pages/analytics.html")
