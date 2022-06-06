@@ -64,10 +64,15 @@ def getController():
   # contact us view
   config.add_route('get_about_us', '/aboutUs')
   config.add_view(routes.get_about_us, route_name='get_about_us')
+  #*********************************************************************
 
-  # # contact us view
-  # config.add_route('get_contact_us', '/contactUs')
-  # config.add_view(routes.get_contact_us, route_name='get_contact_us')
+  # contact us view
+  config.add_route('get_test1', '/test1')
+  config.add_view(routes.get_test1, route_name='get_test1')
+
+  # contact us view
+  config.add_route('get_test2', '/test2')
+  config.add_view(routes.get_test2, route_name='get_test2')
 
   config.add_static_view(name='/', path='./public', cache_max_age=3600)
 

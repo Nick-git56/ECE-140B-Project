@@ -141,13 +141,24 @@ def get_about_us(req):
     
     return FileResponse("pages/aboutUs.html")
 
-# def get_contact_us(req):
-#     """
-#     Send contact us view
-
-#     Returns:
-#     Returns a FileResponse object that is associated with this route
-#     :type: FileResponse()
-#     """
+def get_test1(req):
+    """
     
-#     return FileResponse("pages/contactUs.html")
+
+    Returns:
+    Returns a FileResponse object that is associated with this route
+    :type: FileResponse()
+    """
+    
+    return FileResponse("pages/dashboard.html")
+
+def get_test2(req):
+    """
+    
+
+    Returns:
+    Returns a FileResponse object that is associated with this route
+    :type: FileResponse()
+    """
+    
+    return FileResponse("pages/event.html")
