@@ -50,7 +50,7 @@ body {
 }
 
 /* change integer value that is in parenthesis for selection */
-#menu .items li:nth-child(4) {
+#menu .items li:nth-child(5) {
     border-left: 4px solid #fff;
 }
 
@@ -280,6 +280,7 @@ tbody tr td {
 
 .vid{
     padding-top:5rem;
+    padding-left:5rem;
     margin: auto;
 }
 
