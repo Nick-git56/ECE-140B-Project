@@ -278,6 +278,11 @@ tbody tr td {
     font-weight: 600;
 }
 
+.vid{
+    padding-top:5rem;
+    margin: auto;
+}
+
 @media (max-width: 769px) {
     #menu {
         width: 270px;

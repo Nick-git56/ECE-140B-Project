@@ -80,16 +80,16 @@ def getController():
   config.add_view(routes.get_employeeView, route_name='get_employeeView')
 
   # contact us view
-  config.add_route('get_eventView', '/formView')
-  config.add_view(routes.get_eventView, route_name='get_eventView')
+  config.add_route('get_formView', '/formView')
+  config.add_view(routes.get_formView, route_name='get_formView')
 
   # contact us view
-  config.add_route('get_eventView', '/serviceView')
-  config.add_view(routes.get_eventView, route_name='get_eventView')
+  config.add_route('get_serviceView', '/serviceView')
+  config.add_view(routes.get_serviceView, route_name='get_serviceView')
 
   # contact us view
-  config.add_route('get_eventView', '/analyticsView')
-  config.add_view(routes.get_eventView, route_name='get_eventView')
+  config.add_route('get_analyticsView', '/analyticsView')
+  config.add_view(routes.get_analyticsView, route_name='get_analyticsView')
 
   config.add_static_view(name='/', path='./public', cache_max_age=3600)
 
